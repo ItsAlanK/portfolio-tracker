@@ -2,7 +2,7 @@
 
 ![Responsive Image]()
 
-## Design Choices ##
+## UX ##
 ### User Goals ###
 
 
@@ -12,7 +12,8 @@
 ### Owners Goals ###
 
 
-### Layout ###
+## Design Choices ##
+### Flowcharts ###
 
 
 ### Wireframes ###
