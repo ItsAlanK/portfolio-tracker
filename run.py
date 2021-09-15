@@ -38,4 +38,3 @@ def main():
 
 print("Welcome to your own personal Portfolio Tracker!\n")
 main()
-print(FINNHUB_CLIENT.aggregate_indicator('AAPL', 'D'))
