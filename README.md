@@ -52,10 +52,17 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 
 ## Features ##
 ### Existing Features ###
-
+- Live stock/crypto price checker
+- Simple Command-Line Interface
+- Input validation
+- Saves and displays user's position sizes and buy-in prices
+- Calculates current value of user's positions
+- Calculates profit/loss of user's portfolio
+- Restart Program button
 
 ### Potential Future Features
-
+- Save realized gains and losses and add as positions are closed
+- Expand functionality to currencies and commodities
 
 ## Testing ##
 
