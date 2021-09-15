@@ -31,7 +31,11 @@ This idea comes from a personal desire for an app such as this as I currently pl
 
 ## Design Choices ##
 ### Flowcharts ###
+This flowchart tracks to basic steps and checks the program must make to run based on each of the user's potential requirements and inputs. 
 
+![Logic Flowchart](docs/portfolio-tracker-flowchart.png)
+
+Flowchart made using [Lucidchart](https://www.lucidchart.com)
 
 ### Wireframes ###
 
