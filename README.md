@@ -38,7 +38,17 @@ This flowchart tracks to basic steps and checks the program must make to run bas
 Flowchart made using [Lucidchart](https://www.lucidchart.com)
 
 ### Wireframes ###
+Wireframes for the project can be found below. As this project is command line based designs will remain largely the same throughout with accomodations made for varying screensizes.
 
+![Desktop Wireframe](docs/wireframes/desktop-wireframe.png)
+
+Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws4aKBhDPARIsAIWH0JWJhO7hJAo7ksg21AUhhLgGy-mFt-Dwmx0BWkjgxQDdHdxY1u9snBkaAnwrEALw_wcB)
+
+- [Desktop Wireframe](docs/wireframes/desktop-wireframe.png)
+
+- [Tablet Wireframe](docs/wireframes/tablet-wireframe.png)
+
+- [Mobile Wireframe](docs/wireframes/mobile-wireframe.png)
 
 ## Features ##
 ### Existing Features ###
