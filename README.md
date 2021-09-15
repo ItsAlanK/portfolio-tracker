@@ -65,13 +65,6 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 - Expand functionality to currencies and commodities
 
 ## Testing ##
-Technologies used in this project:
-- [Python](https://www.python.org/)
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- [GSpread](https://docs.gspread.org/en/v4.0.1/)
-- [Google OAuth](https://developers.google.com/identity/protocols/oauth2)
-- [Finnhub.io](https://finnhub.io/)
-- [Finnhub-python](https://github.com/Finnhub-Stock-API/finnhub-python)
 
 
 ### Validator Testing ###
@@ -84,6 +77,12 @@ Technologies used in this project:
 
 
 ## Technologies ##
-
+Technologies used in this project:
+- [Python](https://www.python.org/)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [GSpread](https://docs.gspread.org/en/v4.0.1/)
+- [Google OAuth](https://developers.google.com/identity/protocols/oauth2)
+- [Finnhub.io](https://finnhub.io/)
+- [Finnhub-python](https://github.com/Finnhub-Stock-API/finnhub-python)
 
 ## Credits ##
