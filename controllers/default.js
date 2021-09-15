@@ -58,3 +58,13 @@ if (process.env.CREDS != null) {
         }
     });
 }
+
+if (process.env.FINNHUB != null) {
+    console.log("Creating finnhubkey.py file.");
+    fs.writeFile('finnhubkey.py', process.env.FINNHUB, 'utf8', function (err) {
+        if (err) {
+            console.log('Error writing file: ', err);
+            socket.emit("console_output", "Error saving credentials: " + err);
+        }
+    });
+}
