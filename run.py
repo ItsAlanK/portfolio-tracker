@@ -21,12 +21,14 @@ def start_program():
     """
     Provide opening query to user
     """
-    expected_responses = ["L","P"]
-    print(f"If you would like to check Live Stock or Crypto prices press {expected_responses[0]}.")
-    print(f"If you would like to View or Edit your personal positions press {expected_responses[1]}.")
-    response = input(f"Enter your response ({expected_responses[0]}/{expected_responses[1]}):\n")
-    
-    validate(response, expected_responses)
+    while True:
+        expected_responses = ["L","P"]
+        print(f"If you would like to check Live Stock or Crypto prices press {expected_responses[0]}.")
+        print(f"If you would like to View or Edit your personal positions press {expected_responses[1]}.")
+        response = input(f"Enter your response ({expected_responses[0]}/{expected_responses[1]}):\n")
+        
+        if validate(response, expected_responses):
+            break
 
 
 def main():
