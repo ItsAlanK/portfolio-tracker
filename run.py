@@ -16,23 +16,49 @@ SHEET = GSPREAD_CLIENT.open("portfolio-tracker")
 
 def start_program():
     """
-    Provide opening option to user
+    Provide opening option to user and runs appropriate
+    function based on the response given.
     """
     while True:
         expected_responses = ["L", "P"]
-        print(f"If you would like to check Live Stock or Crypto prices press \
-            {expected_responses[0]}.")
-        print(f"If you would like to View or Edit your personal positions press \
-            {expected_responses[1]}.")
-        response = input(f"Enter your response \
-            ({expected_responses[0]}/{expected_responses[1]}):\n").upper()
+        print(
+            "If you would like to check Live Stock or "
+            f"Crypto prices press {expected_responses[0]}."
+        )
+        print(
+            "If you would like to View or Edit your personal positions "
+            f"press {expected_responses[1]}."
+        )
+        response = input(
+            "Enter your response "
+            f"({expected_responses[0]}/{expected_responses[1]}):\n"
+            ).upper()
+
         if validate.validate_choice(response, expected_responses):
             break
 
     if response == expected_responses[0]:
-        print(requests.get_live_data("AMC"))
+        live_search()
+
     elif response == expected_responses[1]:
         print("Obtaining position data")
+
+
+def live_search():
+    """
+    Takes user's request and provides market data for the given ticker.
+    """
+    search = input(
+            "Enter 'C' is you wish to search a cryptocurrency or 'S' "
+            "for a stock followed by the ticker/symbol you wish to view: \n"
+            )
+    search_type_options = ["C", "S"]
+    search_type = search.split()[0].upper()
+    if validate.validate_choice(search_type, search_type_options):
+        # requests.get_live_data(search)
+        print(search)
+    else:
+        requests.get_all_symbols()
 
 
 def main():
