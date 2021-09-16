@@ -39,7 +39,6 @@ def start_program():
 
     if response == expected_responses[0]:
         live_search()
-
     elif response == expected_responses[1]:
         print("Obtaining position data")
 
@@ -49,12 +48,13 @@ def live_search():
     Takes user's request and provides market data for the given ticker.
     """
     while True:
-        search = input(
-                "Enter 'C' is you wish to search a cryptocurrency or 'S' for "
-                "a stock\nfollowed by the ticker/symbol you wish to view "
-                "separated with a space: \n"
-                )
         expected_search_types = ["C", "S"]
+        search = input(
+                f"Enter {expected_search_types[0]} if you wish to search a "
+                f"cryptocurrency or {expected_search_types[1]} for "
+                "a stock\nfollowed by the ticker/symbol you wish to view, "
+                "separated with a space (eg S AMC): \n"
+                )
         search_type = search.split()[0].upper()
         requested_ticker = search.split()[1].upper()
         valid_tickers = requests.get_all_symbols()
@@ -62,7 +62,26 @@ def live_search():
                 and validate.validate_choice(requested_ticker, valid_tickers):
             break
 
-    requests.get_live_data(requested_ticker)
+    live_price = requests.get_live_data(requested_ticker)
+    print(f"The current price for {requested_ticker} is ${live_price}\n")
+    navigate()
+
+
+def navigate():
+    while True:
+        expected_responses = ["A", "B"]
+        response = input(
+                    "If you wish to search another item "
+                    f"press {expected_responses[0]} "
+                    "If you wish to return to home "
+                    f"press {expected_responses[1]}\n"
+                    ).upper()
+        if validate.validate_choice(response, expected_responses):
+            break
+    if response == expected_responses[0]:
+        live_search()
+    elif response == expected_responses[1]:
+        start_program()
 
 
 def main():

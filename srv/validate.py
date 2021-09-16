@@ -5,7 +5,7 @@ def validate_choice(response, expected_response):
     in expected_response list.
     """
     try:
-        if response not in expected_response:
+        if response.upper() not in expected_response:
             raise ValueError(
                 f"Response must be one of the following {expected_response}"
             )
