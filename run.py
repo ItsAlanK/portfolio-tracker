@@ -1,8 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import finnhub
-import finnhubkey
-from helpers import validate
+import env
+import validate
 import time
 
 SCOPE = [
@@ -15,7 +15,7 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("portfolio-tracker")
-FINNHUB_CLIENT = finnhub.Client(api_key=finnhubkey.key)
+FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 
 
 def start_program():
@@ -30,7 +30,7 @@ def start_program():
             {expected_responses[1]}.")
         response = input(f"Enter your response \
             ({expected_responses[0]}/{expected_responses[1]}):\n")
-        if validate(response, expected_responses):
+        if validate.validate_choice(response, expected_responses):
             break
 
 

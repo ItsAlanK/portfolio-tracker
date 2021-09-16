@@ -1,4 +1,4 @@
-def validate(response, expected_response):
+def validate_choice(response, expected_response):
     """
     Check if response provided is valid.
     Raises error if response provided does not match an object
