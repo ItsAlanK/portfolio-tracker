@@ -10,6 +10,6 @@ def validate_choice(response, expected_response):
                 f"Response must be one of the following {expected_response}"
             )
     except ValueError as e:
-        print(f"Invalid data; {e}, please try again.\n")
+        print(f"Invalid data: {e}, please try again.\n")
         return False
     return True

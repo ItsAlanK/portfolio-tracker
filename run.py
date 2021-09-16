@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from srv import validate, requests
+from srv import validate as val, requests
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -47,12 +47,22 @@ def live_search():
                 "a stock\nfollowed by the ticker/symbol you wish to view, "
                 "separated with a space (eg S AMC): \n"
                 )
-        search_type = search.split()[0].upper()
-        requested_ticker = search.split()[1].upper()
-        valid_tickers = requests.get_all_symbols()
-        if validate.validate_choice(search_type, expected_search_types) \
-                and validate.validate_choice(requested_ticker, valid_tickers):
-            break
+        search_split = search.split()
+        try:
+            if len(search_split) != 2:
+                raise ValueError(
+                    "You must enter exactly 2 values separated by a space, "
+                    f"you entered {len(search_split)}"
+                )
+        except ValueError as e:
+            print(f"Invalid input: {e}")
+        else:
+            search_type = search_split[0].upper()
+            requested_ticker = search.split()[1].upper()
+            valid_tickers = requests.get_all_symbols()
+            if val.validate_choice(search_type, expected_search_types) \
+                    and val.validate_choice(requested_ticker, valid_tickers):
+                break
 
     live_price = requests.get_live_data(requested_ticker)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
@@ -67,6 +77,7 @@ def navigate():
         f"press {expected_responses[1]}\n"
 
     response = requests.basic_input_request(message, expected_responses)
+
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
