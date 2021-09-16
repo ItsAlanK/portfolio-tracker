@@ -23,7 +23,9 @@ def get_live_data(search_type, ticker):
     elif search_type == "C":
         time_end = round(time.time())
         time_start = time_end - 60
-        raw_data = FINNHUB_CLIENT.crypto_candles(ticker, 1, time_start, time_end)
+        raw_data = FINNHUB_CLIENT.crypto_candles(
+            ticker, 1, time_start, time_end
+            )
         current_price_raw = raw_data["c"]
         current_price = round(current_price_raw[0], 2)
         return current_price
