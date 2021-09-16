@@ -13,4 +13,3 @@ def validate_choice(response, expected_response):
         print(f"Invalid data: {e}, please try again.\n")
         return False
     return True
-    

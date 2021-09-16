@@ -38,6 +38,7 @@ def start_program():
 def live_search():
     """
     Confirms user inputs are valid.
+    Formats ticker for crypto if c is chosen.
     Takes user's inputs and provides market data for the given ticker.
     """
     while True:
@@ -45,8 +46,9 @@ def live_search():
         search = input(
                 f"Enter {expected_search_types[0]} if you wish to search a "
                 f"cryptocurrency or {expected_search_types[1]} for "
-                "a stock\nfollowed by the ticker/symbol you wish to view, "
-                "separated with a space (eg S AMC): \n"
+                "a stock\nfollowed by the ticker/crypto symbol "
+                "combo you wish to view, separated with "
+                "a space (eg S AMC, C BTC): \n"
                 )
         search_split = search.split()
         try:
@@ -59,11 +61,15 @@ def live_search():
             print(f"Invalid input: {e}")
         else:
             search_type = search_split[0].upper()
-            requested_ticker = search.split()[1].upper()
-            valid_tickers = requests.get_all_symbols(search_type)
-            if val.validate_choice(search_type, expected_search_types) \
-                    and val.validate_choice(requested_ticker, valid_tickers):
-                break
+            if val.validate_choice(search_type, expected_search_types):
+                if search_type == "S":
+                    requested_ticker = search.split()[1].upper()
+                elif search_type == "C":
+                    requested_ticker = "BINANCE:"\
+                        f"{search.split()[1].upper()}USDT"
+                valid_tickers = requests.get_all_symbols(search_type)
+                if val.validate_choice(requested_ticker, valid_tickers):
+                    break
 
     live_price = requests.get_live_data(search_type, requested_ticker)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
