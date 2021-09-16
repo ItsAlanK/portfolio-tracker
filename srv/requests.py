@@ -13,20 +13,23 @@ def basic_input_request(message, expected_responses):
     return response
 
 
-def get_live_data(ticker):
+def get_live_data(search_type, ticker):
     raw_data = FINNHUB_CLIENT.quote(ticker)
     current_price_raw = raw_data["c"]
     current_price = round(current_price_raw, 2)
     return current_price
 
 
-def get_all_symbols():
+def get_all_symbols(type):
     """
     Generates a list of all valid stock tickers to
     validate user ticker selections
     """
-    all_companies = FINNHUB_CLIENT.stock_symbols('US')
+    if type == "S":
+        all_tickers = FINNHUB_CLIENT.stock_symbols('US')
+    elif type == "C":
+        all_tickers = FINNHUB_CLIENT.crypto_symbols('BINANCE')
     symbols = []
-    for company in all_companies:
-        symbols.append(company["symbol"])
+    for ticker in all_tickers:
+        symbols.append(ticker["symbol"])
     return symbols

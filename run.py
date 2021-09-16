@@ -37,7 +37,8 @@ def start_program():
 
 def live_search():
     """
-    Takes user's request and provides market data for the given ticker.
+    Confirms user inputs are valid.
+    Takes user's inputs and provides market data for the given ticker.
     """
     while True:
         expected_search_types = ["C", "S"]
@@ -59,12 +60,12 @@ def live_search():
         else:
             search_type = search_split[0].upper()
             requested_ticker = search.split()[1].upper()
-            valid_tickers = requests.get_all_symbols()
+            valid_tickers = requests.get_all_symbols(search_type)
             if val.validate_choice(search_type, expected_search_types) \
                     and val.validate_choice(requested_ticker, valid_tickers):
                 break
 
-    live_price = requests.get_live_data(requested_ticker)
+    live_price = requests.get_live_data(search_type, requested_ticker)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
 
@@ -93,8 +94,3 @@ def main():
 
 print("Welcome to your own personal Portfolio Tracker!\n")
 main()
-
-
-# time = int(time.time())
-# timelast = time - 60
-# print(FINNHUB_CLIENT.crypto_candles('BINANCE:DOGEUSDT', '1', timelast, time))
