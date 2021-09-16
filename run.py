@@ -52,13 +52,16 @@ def live_search():
             "Enter 'C' is you wish to search a cryptocurrency or 'S' "
             "for a stock followed by the ticker/symbol you wish to view: \n"
             )
-    search_type_options = ["C", "S"]
+    expected_search_types = ["C", "S"]
     search_type = search.split()[0].upper()
-    if validate.validate_choice(search_type, search_type_options):
+    requested_ticker = search.split()[1].upper()
+    valid_tickers = requests.get_all_symbols()
+    if validate.validate_choice(search_type, expected_search_types) \
+            and validate.validate_choice(requested_ticker, valid_tickers):
         # requests.get_live_data(search)
-        print(search)
+        requests.get_live_data(requested_ticker)
     else:
-        requests.get_all_symbols()
+        print("Bad")
 
 
 def main():

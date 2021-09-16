@@ -10,8 +10,12 @@ def get_live_data(ticker):
 
 
 def get_all_symbols():
+    """
+    Generates a list of all valid stock tickers to
+    validate user ticker selections
+    """
     all_companies = FINNHUB_CLIENT.stock_symbols('US')
     symbols = []
     for company in all_companies:
         symbols.append(company["symbol"])
-    print(symbols)
+    return symbols
