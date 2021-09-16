@@ -1,9 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import finnhub
-import env
-import validate
-import time
+from srv import validate, requests
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -15,7 +12,6 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("portfolio-tracker")
-FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 
 
 def start_program():
@@ -29,9 +25,14 @@ def start_program():
         print(f"If you would like to View or Edit your personal positions press \
             {expected_responses[1]}.")
         response = input(f"Enter your response \
-            ({expected_responses[0]}/{expected_responses[1]}):\n")
+            ({expected_responses[0]}/{expected_responses[1]}):\n").upper()
         if validate.validate_choice(response, expected_responses):
             break
+
+    if response == expected_responses[0]:
+        print(requests.get_live_data("AMC"))
+    elif response == expected_responses[1]:
+        print("Obtaining position data")
 
 
 def main():
@@ -42,6 +43,9 @@ def main():
 
 
 print("Welcome to your own personal Portfolio Tracker!\n")
-time = int(time.time())
-timelast = time - 60
-print(FINNHUB_CLIENT.crypto_candles('BINANCE:DOGEUSDT', '1', timelast, time))
+main()
+
+
+# time = int(time.time())
+# timelast = time - 60
+# print(FINNHUB_CLIENT.crypto_candles('BINANCE:DOGEUSDT', '1', timelast, time))
