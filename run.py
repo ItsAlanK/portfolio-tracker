@@ -48,20 +48,21 @@ def live_search():
     """
     Takes user's request and provides market data for the given ticker.
     """
-    search = input(
-            "Enter 'C' is you wish to search a cryptocurrency or 'S' "
-            "for a stock followed by the ticker/symbol you wish to view: \n"
-            )
-    expected_search_types = ["C", "S"]
-    search_type = search.split()[0].upper()
-    requested_ticker = search.split()[1].upper()
-    valid_tickers = requests.get_all_symbols()
-    if validate.validate_choice(search_type, expected_search_types) \
-            and validate.validate_choice(requested_ticker, valid_tickers):
-        # requests.get_live_data(search)
-        requests.get_live_data(requested_ticker)
-    else:
-        print("Bad")
+    while True:
+        search = input(
+                "Enter 'C' is you wish to search a cryptocurrency or 'S' for "
+                "a stock\nfollowed by the ticker/symbol you wish to view "
+                "separated with a space: \n"
+                )
+        expected_search_types = ["C", "S"]
+        search_type = search.split()[0].upper()
+        requested_ticker = search.split()[1].upper()
+        valid_tickers = requests.get_all_symbols()
+        if validate.validate_choice(search_type, expected_search_types) \
+                and validate.validate_choice(requested_ticker, valid_tickers):
+            break
+
+    requests.get_live_data(requested_ticker)
 
 
 def main():
