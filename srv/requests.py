@@ -1,7 +1,16 @@
 import finnhub
 import env
+from srv import validate
 
 FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
+
+
+def basic_input_request(message, expected_responses):
+    while True:
+        response = input(message).upper()
+        if validate.validate_choice(response, expected_responses):
+            break
+    return response
 
 
 def get_live_data(ticker):

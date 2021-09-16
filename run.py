@@ -19,23 +19,15 @@ def start_program():
     Provide opening option to user and runs appropriate
     function based on the response given.
     """
-    while True:
-        expected_responses = ["L", "P"]
-        print(
-            "If you would like to check Live Stock or "
-            f"Crypto prices press {expected_responses[0]}."
-        )
-        print(
-            "If you would like to View or Edit your personal positions "
-            f"press {expected_responses[1]}."
-        )
-        response = input(
-            "Enter your response "
-            f"({expected_responses[0]}/{expected_responses[1]}):\n"
-            ).upper()
+    expected_responses = ["L", "P"]
+    message = "If you would like to check Live Stock or "\
+        f"Crypto prices press {expected_responses[0]}. "\
+        "If you would like to View or Edit your personal positions "\
+        f"press {expected_responses[1]}.\n"\
+        "Enter your response "\
+        f"({expected_responses[0]}/{expected_responses[1]}):\n"
 
-        if validate.validate_choice(response, expected_responses):
-            break
+    response = requests.basic_input_request(message, expected_responses)
 
     if response == expected_responses[0]:
         live_search()
@@ -68,16 +60,13 @@ def live_search():
 
 
 def navigate():
-    while True:
-        expected_responses = ["A", "B"]
-        response = input(
-                    "If you wish to search another item "
-                    f"press {expected_responses[0]} "
-                    "If you wish to return to home "
-                    f"press {expected_responses[1]}\n"
-                    ).upper()
-        if validate.validate_choice(response, expected_responses):
-            break
+    expected_responses = ["A", "B"]
+    message = "If you wish to search another item "\
+        f"press {expected_responses[0]} \n"\
+        "If you wish to return to home "\
+        f"press {expected_responses[1]}\n"
+
+    response = requests.basic_input_request(message, expected_responses)
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
