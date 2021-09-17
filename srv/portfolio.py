@@ -41,4 +41,5 @@ def convert_to_floats(list):
 def calculate_values(amounts, value):
     amounts = convert_to_floats(amounts)
     amounts_array = np.array(amounts)
-    print(amounts_array)
+    amount_totals = np.sum(amounts_array, 0)
+    print(amount_totals)
