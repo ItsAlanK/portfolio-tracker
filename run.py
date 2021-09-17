@@ -65,12 +65,16 @@ def live_search():
 
 
 def portfolio_search():
+    """
+    Searches portfolio worksheets and uses data to display live
+    values for all assets held within portfolio.
+    """
     all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
     stock_portfolio_tickers = all_portfolio_amounts[0][0]
     stock_amounts = all_portfolio_amounts[0][1:]
     stock_live_prices = pricedata.get_live_data("S", stock_portfolio_tickers)
-
-    portfolio.calculate_values(stock_amounts, stock_live_prices)
+    stock_values = portfolio.calculate_values(stock_amounts, stock_live_prices)
+    print(stock_values)
 
 
 def navigate():
