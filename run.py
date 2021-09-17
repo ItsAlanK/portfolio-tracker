@@ -58,8 +58,8 @@ def live_search():
                 valid_tickers = pricedata.get_all_symbols(search_type)
                 if val.validate_choice(requested_ticker, valid_tickers):
                     break
-
-    live_price = pricedata.get_live_data(search_type, requested_ticker)
+    requested_ticker_list = [requested_ticker]
+    live_price = pricedata.get_live_data(search_type, requested_ticker_list)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
 
