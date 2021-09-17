@@ -1,17 +1,4 @@
-import gspread
-from google.oauth2.service_account import Credentials
-from srv import validate as val, pricedata
-
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
-
-CREDS = Credentials.from_service_account_file("creds.json")
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("portfolio-tracker")
+from srv import validate as val, pricedata, portfolio
 
 
 def start_program():
@@ -32,7 +19,8 @@ def start_program():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
-        print("Obtaining position data")
+        print("Obtaining position data...")
+        portfolio_search()
 
 
 def live_search():
@@ -74,6 +62,13 @@ def live_search():
     live_price = pricedata.get_live_data(search_type, requested_ticker)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
+
+
+def portfolio_search():
+    all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
+    stock_portfolio_data = all_portfolio_amounts[0]
+    stock_live_prices = pricedata.get_live_data("S", stock_portfolio_data[0])
+    print(stock_live_prices)
 
 
 def navigate():

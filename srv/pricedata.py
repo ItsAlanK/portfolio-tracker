@@ -11,9 +11,11 @@ def get_live_data(search_type, ticker):
     live price data and return it.
     """
     if search_type == "S":
-        raw_data = FINNHUB_CLIENT.quote(ticker)
-        current_price_raw = raw_data["c"]
-        current_price = round(current_price_raw, 2)
+        current_price = []
+        for i in ticker:
+            raw_data = FINNHUB_CLIENT.quote(i)
+            current_price_raw = raw_data["c"]
+            current_price.append(round(current_price_raw, 2))
         return current_price
     elif search_type == "C":
         time_end = round(time.time())
