@@ -73,7 +73,6 @@ def portfolio_search():
     portfolio.calculate_values(stock_amounts, stock_live_prices)
 
 
-
 def navigate():
     """
     Give user option of searching another ticker or
