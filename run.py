@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from srv import validate as val, requests
+from srv import validate as val, pricedata
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -27,7 +27,7 @@ def start_program():
         "Enter your response "\
         f"({expected_responses[0]}/{expected_responses[1]}):\n"
 
-    response = requests.basic_input_request(message, expected_responses)
+    response = val.basic_input_request(message, expected_responses)
 
     if response == expected_responses[0]:
         live_search()
@@ -67,23 +67,27 @@ def live_search():
                 elif search_type == "C":
                     requested_ticker = "BINANCE:"\
                         f"{search.split()[1].upper()}USDT"
-                valid_tickers = requests.get_all_symbols(search_type)
+                valid_tickers = pricedata.get_all_symbols(search_type)
                 if val.validate_choice(requested_ticker, valid_tickers):
                     break
 
-    live_price = requests.get_live_data(search_type, requested_ticker)
+    live_price = pricedata.get_live_data(search_type, requested_ticker)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
 
 
 def navigate():
+    """
+    Give user option of searching another ticker or
+    return to start menu options.
+    """
     expected_responses = ["A", "B"]
     message = "If you wish to search another item "\
         f"press {expected_responses[0]} \n"\
         "If you wish to return to home "\
         f"press {expected_responses[1]}\n"
 
-    response = requests.basic_input_request(message, expected_responses)
+    response = val.basic_input_request(message, expected_responses)
 
     if response == expected_responses[0]:
         live_search()
