@@ -69,7 +69,9 @@ def portfolio_search():
     stock_portfolio_tickers = all_portfolio_amounts[0][0]
     stock_amounts = all_portfolio_amounts[0][1:]
     stock_live_prices = pricedata.get_live_data("S", stock_portfolio_tickers)
-    portfolio.calculate_values(stock_amounts, 1)
+
+    portfolio.calculate_values(stock_amounts, stock_live_prices)
+
 
 
 def navigate():

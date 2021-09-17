@@ -24,22 +24,30 @@ def retrieve_portfolio_amounts():
     return stock_amounts_raw, crypto_amounts_raw
 
 
-def convert_to_floats(list):
+def convert_to_floats(lists):
     """
     Receives nested list and converts values into floats
     and replaces empty values with 0's
     """
-    for i in list:
-        for index, item in enumerate(i):
-            if item == "":
-                i[index] = 0
+    for list in lists:
+        for index, value in enumerate(list):
+            if value == "":
+                list[index] = 0
             else:
-                i[index] = float(i[index])
-    return list
+                list[index] = float(list[index])
+    return lists
 
 
 def calculate_values(amounts, value):
+    """
+    Takes list of amounts of each asset held in portfolio worksheet
+    and current value of each asset and calculates the total value of each
+    asset held.
+    """
     amounts = convert_to_floats(amounts)
     amounts_array = np.array(amounts)
     amount_totals = np.sum(amounts_array, 0)
-    print(amount_totals)
+    total_values = []
+    for (amount, price) in zip(amount_totals, value):
+        total_values.append(amount * price)
+    return total_values
