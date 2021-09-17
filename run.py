@@ -74,7 +74,9 @@ def portfolio_search():
     stock_amounts = all_portfolio_amounts[0][1:]
     stock_live_prices = pricedata.get_live_data("S", stock_portfolio_tickers)
     stock_values = portfolio.calculate_values(stock_amounts, stock_live_prices)
-    print(stock_values)
+    print("Your current portfolio contains: ")
+    for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
+        print(f"{ticker} worth {value}")
 
 
 def navigate():
