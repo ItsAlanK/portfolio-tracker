@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import numpy as np
 
 
 SCOPE = [
@@ -21,3 +22,23 @@ def retrieve_portfolio_amounts():
     stock_amounts_raw = SHEET.worksheet("stock-amounts").get_all_values()
     crypto_amounts_raw = SHEET.worksheet("crypto-amounts").get_all_values()
     return stock_amounts_raw, crypto_amounts_raw
+
+
+def convert_to_floats(list):
+    """
+    Receives nested list and converts values into floats
+    and replaces empty values with 0's
+    """
+    for i in list:
+        for index, item in enumerate(i):
+            if item == "":
+                i[index] = 0
+            else:
+                i[index] = float(i[index])
+    return list
+
+
+def calculate_values(amounts, value):
+    amounts = convert_to_floats(amounts)
+    amounts_array = np.array(amounts)
+    print(amounts_array)
