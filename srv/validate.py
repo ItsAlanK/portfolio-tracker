@@ -6,6 +6,11 @@ def validate_choice(response, expected_response):
     """
     try:
         if response.upper() not in expected_response:
+            if len(expected_response) >= 5:
+                expected_response = expected_response[:5]
+                raise ValueError(
+                    f"Response must be a valid ticker symbol such as: {expected_response}"
+                )
             raise ValueError(
                 f"Response must be one of the following {expected_response}"
             )
