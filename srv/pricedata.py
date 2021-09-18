@@ -1,11 +1,7 @@
-import finnhub
-import env
 import time
 
-FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 
-
-def get_live_data(search_type, ticker):
+def get_live_data(search_type, ticker, client):
     """
     Using params provided uses finnhub to fetch
     live price data and return it.
@@ -13,14 +9,14 @@ def get_live_data(search_type, ticker):
     if search_type == "S":
         current_price = []
         for i in ticker:
-            raw_data = FINNHUB_CLIENT.quote(i)
+            raw_data = client.quote(i)
             current_price_raw = raw_data["c"]
             current_price.append(round(current_price_raw, 2))
         return current_price
     elif search_type == "C":
         time_end = round(time.time())
         time_start = time_end - 60
-        raw_data = FINNHUB_CLIENT.crypto_candles(
+        raw_data = client.crypto_candles(
             ticker, 1, time_start, time_end
             )
         current_price_raw = raw_data["c"]
@@ -28,15 +24,15 @@ def get_live_data(search_type, ticker):
         return current_price
 
 
-def get_all_symbols(type):
+def get_all_symbols(type, client):
     """
     Generates a list of all valid stock tickers to
     validate user ticker selections.
     """
     if type == "S":
-        all_tickers = FINNHUB_CLIENT.stock_symbols('US')
+        all_tickers = client.stock_symbols('US')
     elif type == "C":
-        all_tickers = FINNHUB_CLIENT.crypto_symbols('BINANCE')
+        all_tickers = client.crypto_symbols('BINANCE')
     symbols = []
     for ticker in all_tickers:
         symbols.append(ticker["symbol"])

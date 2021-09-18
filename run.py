@@ -1,4 +1,8 @@
 from srv import validate as val, pricedata, portfolio
+import finnhub
+import env
+
+FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 
 
 def start_program():
@@ -55,11 +59,13 @@ def live_search():
                 elif search_type == "C":
                     requested_ticker = "BINANCE:"\
                         f"{search.split()[1].upper()}USDT"
-                valid_tickers = pricedata.get_all_symbols(search_type)
+                valid_tickers = pricedata.get_all_symbols(
+                    search_type, FINNHUB_CLIENT)
                 if val.validate_choice(requested_ticker, valid_tickers):
                     break
     requested_ticker_list = [requested_ticker]
-    live_price = pricedata.get_live_data(search_type, requested_ticker_list)
+    live_price = pricedata.get_live_data(
+        search_type, requested_ticker_list, FINNHUB_CLIENT)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
 
@@ -72,7 +78,8 @@ def portfolio_search():
     all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
     stock_portfolio_tickers = all_portfolio_amounts[0][0]
     stock_amounts = all_portfolio_amounts[0][1:]
-    stock_live_prices = pricedata.get_live_data("S", stock_portfolio_tickers)
+    stock_live_prices = pricedata.get_live_data(
+        "S", stock_portfolio_tickers, FINNHUB_CLIENT)
     stock_values = portfolio.calculate_values(stock_amounts, stock_live_prices)
     print("Your current portfolio contains: ")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
