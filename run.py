@@ -101,11 +101,11 @@ def portfolio_search():
     print("Crypto:")
     for (ticker, value) in zip(crypto_tickers, crypto_values):
         print(f"{ticker} worth {value}")
+    total_value = portfolio.calculate_total_value(stock_values, crypto_values)
+    portfolio_options(total_value)
 
-    portfolio_options()
 
-
-def portfolio_options():
+def portfolio_options(total_value):
     """
     Give user options for actions they can take to make changes
     ti their portfolio.
@@ -120,7 +120,11 @@ def portfolio_options():
     response = val.basic_input_request(message, expected_responses)
 
     if response == expected_responses[0]:
-        print("Creating new position")
+        print("Creating new position...")
+    elif response == expected_responses[1]:
+        print("Editing a position...")
+    elif response == expected_responses[2]:
+        portfolio.calculate_pl(total_value)
     elif response == expected_responses[3]:
         start_program()
 

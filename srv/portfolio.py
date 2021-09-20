@@ -51,3 +51,13 @@ def calculate_values(amounts, value):
     for (amount, price) in zip(amount_totals, value):
         total_values.append(amount * price)
     return total_values
+
+
+def calculate_total_value(stock_values, crypto_values):
+    stock_total = np.sum(stock_values)
+    crypto_total = np.sum(crypto_values)
+    return stock_total + crypto_total
+
+
+def calculate_pl(total_value):
+    print(total_value)
