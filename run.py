@@ -29,7 +29,7 @@ def start_program():
 
 def live_search():
     """
-    Confirms user inputs are valid.
+    Requests user input and confirms user inputs are valid.
     Formats ticker for crypto if c is chosen.
     Takes user's inputs and provides market data for the given ticker.
     """
@@ -74,10 +74,10 @@ def live_search():
 def portfolio_search():
     """
     Searches portfolio worksheets and uses data to display live
-    values for all assets held within portfolio. Formats crypto tickers
-    within function
+    values for all assets held within portfolio.
     """
     all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
+
     stock_portfolio_tickers = all_portfolio_amounts[0][0]
     stock_amounts = all_portfolio_amounts[0][1:]
     stock_live_prices = pricedata.get_live_data(
@@ -93,8 +93,10 @@ def portfolio_search():
     crypto_values = portfolio.calculate_values(
         crypto_amounts, crypto_live_prices)
 
+    print("Stock:")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
         print(f"{ticker} worth {value}")
+    print("Crypto")
     for (ticker, value) in zip(crypto_portfolio_tickers, crypto_values):
         print(f"{ticker} worth {value}")
 

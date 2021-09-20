@@ -35,6 +35,11 @@ def basic_input_request(message, expected_responses):
 
 
 def format_crypto(tickers):
+    """
+    Takes list or string containing ticker informations
+    and format it into form usable by finnhub;
+    eg. BTC -> BINANCE:BTCUSDT
+    """
     if type(tickers) is list:
         for i in range(len(tickers)):
             tickers[i] = "BINANCE:"\
