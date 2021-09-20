@@ -57,8 +57,9 @@ def live_search():
                 if search_type == "S":
                     requested_ticker = search.split()[1].upper()
                 elif search_type == "C":
-                    requested_ticker = "BINANCE:"\
-                        f"{search.split()[1].upper()}USDT"
+                    requested_ticker = val.format_crypto(
+                        search.split()[1].upper()
+                    )
                 valid_tickers = pricedata.get_all_symbols(
                     search_type, FINNHUB_CLIENT)
                 if val.validate_choice(requested_ticker, valid_tickers):
@@ -73,7 +74,8 @@ def live_search():
 def portfolio_search():
     """
     Searches portfolio worksheets and uses data to display live
-    values for all assets held within portfolio.
+    values for all assets held within portfolio. Formats crypto tickers
+    within function
     """
     all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
     stock_portfolio_tickers = all_portfolio_amounts[0][0]
@@ -84,9 +86,7 @@ def portfolio_search():
     print("Your current portfolio contains: ")
 
     crypto_portfolio_tickers = all_portfolio_amounts[1][0]
-    for i in range(len(crypto_portfolio_tickers)):
-        crypto_portfolio_tickers[i] = "BINANCE:"\
-            f"{crypto_portfolio_tickers[i]}USDT"
+    val.format_crypto(crypto_portfolio_tickers)
     crypto_amounts = all_portfolio_amounts[1][1:]
     crypto_live_prices = pricedata.get_live_data(
         "C", crypto_portfolio_tickers, FINNHUB_CLIENT)

@@ -32,3 +32,13 @@ def basic_input_request(message, expected_responses):
         if validate_choice(response, expected_responses):
             break
     return response
+
+
+def format_crypto(tickers):
+    if type(tickers) is list:
+        for i in range(len(tickers)):
+            tickers[i] = "BINANCE:"\
+                f"{tickers[i]}USDT"
+    elif type(tickers) is str:
+        tickers = f"BINANCE:{tickers}USDT"
+    return tickers
