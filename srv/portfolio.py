@@ -60,7 +60,7 @@ def calculate_total_value(stock_values, crypto_values):
     """
     stock_total = np.sum(stock_values)
     crypto_total = np.sum(crypto_values)
-    return stock_total + crypto_total
+    return round(stock_total + crypto_total, 2)
 
 
 def calculate_total_buyin(prices, amounts):
@@ -87,6 +87,6 @@ def calculate_pl(total_value, stock_amounts, crypto_amounts):
     total_spent = round(buy_totals_stock + buy_totals_crypto, 2)
     total_pl = round(total_value - total_spent, 2)
 
-    print(f"The total amount spent on your portfolio is: ${total_spent}")
+    print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
     print(f"The current total value of your portfolio is: ${total_value}\n")
     print(f"Your current P/L is: ${total_pl}")

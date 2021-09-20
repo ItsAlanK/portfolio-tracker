@@ -114,10 +114,11 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
     """
     expected_responses = ["1", "2", "3", "4"]
     message = f"\nDo you want to: \n"\
-        f"{expected_responses[0]} Create/Remove a position? \n"\
-        f"{expected_responses[1]} Edit an existing position? \n"\
-        f"{expected_responses[2]} Calculate current P/L? \n"\
-        f"{expected_responses[3]} Return to start? \n"\
+        f"{expected_responses[0]} Create/Remove a position?\n"\
+        f"{expected_responses[1]} Edit an existing position?\n"\
+        f"{expected_responses[2]} Calculate current P/L?\n"\
+        f"{expected_responses[3]} Return to start?\n"\
+        "Input the number of your desired option.\n"
 
     response = val.basic_input_request(message, expected_responses)
 
