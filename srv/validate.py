@@ -47,3 +47,13 @@ def format_crypto(tickers):
     elif type(tickers) is str:
         tickers = f"BINANCE:{tickers}USDT"
     return tickers
+
+
+def remove_crypto_format(tickers):
+    """
+    Removes formatting on crypto tickers used for finnhub,
+    leaving basic ticker symbol for display purposes.
+    """
+    basic_tickers = [s.replace("BINANCE:", "") for s in tickers]
+    basic_tickers_final = [s.replace("USDT", "") for s in basic_tickers]
+    return basic_tickers_final

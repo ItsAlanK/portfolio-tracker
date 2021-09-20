@@ -92,12 +92,13 @@ def portfolio_search():
         "C", crypto_portfolio_tickers, FINNHUB_CLIENT)
     crypto_values = portfolio.calculate_values(
         crypto_amounts, crypto_live_prices)
+    crypto_tickers = val.remove_crypto_format(crypto_portfolio_tickers)
 
     print("Stock:")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
         print(f"{ticker} worth {value}")
     print("Crypto")
-    for (ticker, value) in zip(crypto_portfolio_tickers, crypto_values):
+    for (ticker, value) in zip(crypto_tickers, crypto_values):
         print(f"{ticker} worth {value}")
 
 
