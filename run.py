@@ -23,7 +23,7 @@ def start_program():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
-        print("Obtaining position data...")
+        print("Obtaining position data...\n")
         portfolio_search()
 
 
@@ -97,9 +97,32 @@ def portfolio_search():
     print("Stock:")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
         print(f"{ticker} worth {value}")
-    print("Crypto")
+    print("\n")
+    print("Crypto:")
     for (ticker, value) in zip(crypto_tickers, crypto_values):
         print(f"{ticker} worth {value}")
+
+    portfolio_options()
+
+
+def portfolio_options():
+    """
+    Give user options for actions they can take to make changes
+    ti their portfolio.
+    """
+    expected_responses = ["1", "2", "3", "4"]
+    message = f"\nDo you want to: \n"\
+        f"{expected_responses[0]} Create/Remove a position? \n"\
+        f"{expected_responses[1]} Edit an existing position? \n"\
+        f"{expected_responses[2]} Calculate current P/L? \n"\
+        f"{expected_responses[3]} Return to start? \n"\
+
+    response = val.basic_input_request(message, expected_responses)
+
+    if response == expected_responses[0]:
+        print("Creating new position")
+    elif response == expected_responses[3]:
+        start_program()
 
 
 def navigate():
