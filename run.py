@@ -74,7 +74,8 @@ def live_search():
 def portfolio_search():
     """
     Searches portfolio worksheets and uses data to display live
-    values for all assets held within portfolio.
+    values for all assets held within portfolio. Passes total value
+    of portfolio currently to next option chain function.
     """
     all_portfolio_amounts = portfolio.retrieve_portfolio_amounts()
 
@@ -101,14 +102,15 @@ def portfolio_search():
     print("Crypto:")
     for (ticker, value) in zip(crypto_tickers, crypto_values):
         print(f"{ticker} worth {value}")
+
     total_value = portfolio.calculate_total_value(stock_values, crypto_values)
-    portfolio_options(total_value)
+    portfolio_options(total_value, stock_amounts, crypto_amounts)
 
 
-def portfolio_options(total_value):
+def portfolio_options(total_value, stock_amounts, crypto_amounts):
     """
     Give user options for actions they can take to make changes
-    ti their portfolio.
+    to their portfolio. Runs correct function according to choice given.
     """
     expected_responses = ["1", "2", "3", "4"]
     message = f"\nDo you want to: \n"\
@@ -124,7 +126,7 @@ def portfolio_options(total_value):
     elif response == expected_responses[1]:
         print("Editing a position...")
     elif response == expected_responses[2]:
-        portfolio.calculate_pl(total_value)
+        portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
     elif response == expected_responses[3]:
         start_program()
 

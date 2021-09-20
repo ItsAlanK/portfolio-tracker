@@ -54,10 +54,39 @@ def calculate_values(amounts, value):
 
 
 def calculate_total_value(stock_values, crypto_values):
+    """
+    Takes lists of total values for stock and crypto and returns
+    their sum.
+    """
     stock_total = np.sum(stock_values)
     crypto_total = np.sum(crypto_values)
     return stock_total + crypto_total
 
 
-def calculate_pl(total_value):
-    print(total_value)
+def calculate_total_buyin(prices, amounts):
+    """
+    Takes lists of prices and amounts of assets at each buyin value
+    to calculate money spent on assets.
+    """
+    buy_prices = convert_to_floats(prices[1:])
+    buy_values = np.multiply(buy_prices, amounts)
+    buy_totals = np.sum(buy_values)
+    return buy_totals
+
+
+def calculate_pl(total_value, stock_amounts, crypto_amounts):
+    """
+    Displays P/L of portfolio by calculating money spent on assets
+    and comparing it to total_value of the portfolio currently.
+    """
+    stock_buyin_raw = SHEET.worksheet("stock-pos-prices").get_all_values()
+    crypto_buyin_raw = SHEET.worksheet("crypto-pos-prices").get_all_values()
+
+    buy_totals_stock = calculate_total_buyin(stock_buyin_raw, stock_amounts)
+    buy_totals_crypto = calculate_total_buyin(crypto_buyin_raw, crypto_amounts)
+    total_spent = round(buy_totals_stock + buy_totals_crypto, 2)
+    total_pl = round(total_value - total_spent, 2)
+
+    print(f"The total amount spent on your portfolio is: ${total_spent}")
+    print(f"The current total value of your portfolio is: ${total_value}\n")
+    print(f"Your current P/L is: ${total_pl}")
