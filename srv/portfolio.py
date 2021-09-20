@@ -49,7 +49,7 @@ def calculate_values(amounts, value):
     amount_totals = np.sum(amounts_array, 0)
     total_values = []
     for (amount, price) in zip(amount_totals, value):
-        total_values.append(amount * price)
+        total_values.append(round(amount * price, 2))
     return total_values
 
 

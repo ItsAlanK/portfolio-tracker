@@ -97,11 +97,11 @@ def portfolio_search():
 
     print("Stock:")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
-        print(f"{ticker} worth {value}")
+        print(f"{ticker} worth ${value}")
     print("\n")
     print("Crypto:")
     for (ticker, value) in zip(crypto_tickers, crypto_values):
-        print(f"{ticker} worth {value}")
+        print(f"{ticker} worth ${value}")
 
     total_value = portfolio.calculate_total_value(stock_values, crypto_values)
     portfolio_options(total_value, stock_amounts, crypto_amounts)
