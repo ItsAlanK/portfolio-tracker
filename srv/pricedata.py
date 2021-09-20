@@ -18,7 +18,6 @@ def get_live_data(search_type, ticker, client):
         time_end = round(time.time())
         time_start = time_end - 60
         for asset in ticker:
-            asset = f"BINANCE:{asset}USDT"
             raw_data = client.crypto_candles(
                 asset, 1, time_start, time_end
                 )

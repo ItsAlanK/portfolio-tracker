@@ -84,10 +84,14 @@ def portfolio_search():
     print("Your current portfolio contains: ")
 
     crypto_portfolio_tickers = all_portfolio_amounts[1][0]
+    for i in range(len(crypto_portfolio_tickers)):
+        crypto_portfolio_tickers[i] = "BINANCE:"\
+            f"{crypto_portfolio_tickers[i]}USDT"
     crypto_amounts = all_portfolio_amounts[1][1:]
     crypto_live_prices = pricedata.get_live_data(
         "C", crypto_portfolio_tickers, FINNHUB_CLIENT)
-    crypto_values = portfolio.calculate_values(crypto_amounts, crypto_live_prices)
+    crypto_values = portfolio.calculate_values(
+        crypto_amounts, crypto_live_prices)
 
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
         print(f"{ticker} worth {value}")
