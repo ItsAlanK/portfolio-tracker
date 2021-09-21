@@ -90,3 +90,16 @@ def calculate_pl(total_value, stock_amounts, crypto_amounts):
     print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
     print(f"The current total value of your portfolio is: ${total_value}\n")
     print(f"Your current P/L is: ${total_pl}")
+
+
+def edit_positions(type, ticker):
+    """
+    Edits worksheet info for desired asset with info provided
+    by the user.
+    """
+    if type == "S":
+        amount_sheet = SHEET.worksheet("stock-amounts")
+        price_sheet = SHEET.worksheet("stock-pos-prices")
+    elif type == "C":
+        amount_sheet = SHEET.worksheet("crypto-amounts")
+        price_sheet = SHEET.worksheet("crypto-pos-prices")

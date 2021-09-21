@@ -107,7 +107,10 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
             f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
             "by the ticker/crypto symbol combo you wish to edit, "\
             "separated with a space (eg S AMC, C BTC): \n"
-        print(complex_query(search, expected_types))
+        complex_response = complex_query(search, expected_types)[0]
+        response_type = complex_response[0]
+        response_ticker = complex_response[1]
+        portfolio.edit_positions(response_type, response_ticker)
     elif response == expected_responses[2]:
         portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
     elif response == expected_responses[3]:
