@@ -105,6 +105,11 @@ def calculate_total_buyin(prices, amounts):
 
 
 def calculate_realised(prices, amounts):
+    """
+    Takes lists of prices and amounts of assets at each buyin value
+    and uses negative amounts as a marker for assets sold.
+    These amounts' values are calculated and returned.
+    """
     buy_prices = convert_to_floats(prices[1:])
     realised_profits = []
     for (list, price) in zip(amounts, buy_prices):
