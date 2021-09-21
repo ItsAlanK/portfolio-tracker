@@ -69,6 +69,10 @@ def calculate_total_buyin(prices, amounts):
     to calculate money spent on assets.
     """
     buy_prices = convert_to_floats(prices[1:])
+    for (list, price) in zip(amounts, buy_prices):
+        for i in range(len(list)):
+            if list[i] < 0:
+                price[i] *= 0
     buy_values = np.multiply(buy_prices, amounts)
     buy_totals = np.sum(buy_values)
     return buy_totals
