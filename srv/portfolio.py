@@ -78,6 +78,19 @@ def calculate_total_buyin(prices, amounts):
     return buy_totals
 
 
+def calculate_realised(prices, amounts):
+    buy_prices = convert_to_floats(prices[1:])
+    realised_profits = []
+    for (list, price) in zip(amounts, buy_prices):
+        for i in range(len(list)):
+            if list[i] < 0:
+                list[i] *= -1
+                realised_profits.append(list[i] * price[i])
+    buy_values = np.multiply(buy_prices, amounts)
+    buy_totals = np.sum(buy_values)
+    return buy_totals
+
+
 def calculate_pl(total_value, stock_amounts, crypto_amounts):
     """
     Displays P/L of portfolio by calculating money spent on assets
@@ -88,8 +101,10 @@ def calculate_pl(total_value, stock_amounts, crypto_amounts):
 
     buy_totals_stock = calculate_total_buyin(stock_buyin_raw, stock_amounts)
     buy_totals_crypto = calculate_total_buyin(crypto_buyin_raw, crypto_amounts)
+    realised_profit = calculate_realised(stock_buyin_raw, stock_amounts)
     total_spent = round(buy_totals_stock + buy_totals_crypto, 2)
-    total_pl = round(total_value - total_spent, 2)
+    total_value_realised = total_spent + realised_profit
+    total_pl = round(total_value_realised - total_spent, 2)
 
     print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
     print(f"The current total value of your portfolio is: ${total_value}\n")
