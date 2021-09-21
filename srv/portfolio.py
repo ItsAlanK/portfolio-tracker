@@ -140,7 +140,7 @@ def edit_positions(type, ticker):
             "eg. '5 500' or '-10 25'")
         amount = data.split()[0]
         price = data.split()[1]
-        print("Updating worksheet...")
+        print("Updating portfolio...")
         column = amount_sheet.find(ticker).col
         row = next_available_row(amount_sheet, column)
         amount_sheet.update_cell(row, column, amount)
@@ -177,6 +177,15 @@ def next_available_row(worksheet, column):
     return str(len(str_list)+1)
 
 
+def next_available_column(worksheet, row):
+    """
+    Finds next empty column of row provided for a worksheet and returns
+    column value.
+    """
+    str_list = list(filter(None, worksheet.row_values(row)))
+    return str(len(str_list)+1)
+
+
 def create_position(type, ticker):
     amount_sheet = assign_sheets_type(type, ticker)[0]
     price_sheet = assign_sheets_type(type, ticker)[1]
@@ -185,9 +194,26 @@ def create_position(type, ticker):
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
             type, ticker, amount_sheet_tickers, price_sheet_tickers):
-        print("removing position")
+        print(f"Removing {ticker} from your portfolio.")
+        column = amount_sheet.find(ticker).col
+        amount_sheet.delete_columns(column)
+        price_sheet.delete_columns(column)
     else:
-        print("Creating new position")
+        print(f"Adding {ticker} to your portfolio")
+        data = input(
+            f"Please enter the amount of {ticker} you wish to add "
+            "followed by the price you purchased it at\n"
+            "eg. '5 500'")
+        amount = data.split()[0]
+        price = data.split()[1]
+        print("Updating portfolio...")
+        row = 1
+        column = next_available_column(amount_sheet, row)
+        amount_sheet.update_cell(row, column, ticker)
+        amount_sheet.update_cell(row + 1, column, amount)
+        price_sheet.update_cell(row, column, ticker)
+        price_sheet.update_cell(row + 1, column, price)
+        print(f"Added {amount} {ticker} at {price} to your portfolio\n")
 
 
 def assign_sheets_type(type, ticker):

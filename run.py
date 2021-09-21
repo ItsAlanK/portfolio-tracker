@@ -101,7 +101,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
 
     if response == expected_responses[0]:
         expected_types = ["C", "S"]
-        search = f"Enter {expected_types[0]} if you wish to add/remove a "\
+        search = f"\nEnter {expected_types[0]} if you wish to add/remove a "\
             f"cryptocurrency position or {expected_types[1]} for a "\
             "stock\nfollowed by the ticker/crypto symbol combo you "\
             "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
@@ -111,7 +111,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
         portfolio.create_position(response_type, response_ticker)
     elif response == expected_responses[1]:
         expected_types = ["C", "S"]
-        search = f"Enter {expected_types[0]} if you wish to edit a "\
+        search = f"\nEnter {expected_types[0]} if you wish to edit a "\
             f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
             "by the ticker/crypto symbol combo you wish to edit, "\
             "separated with a space (eg S AMC, C BTC): \n"
