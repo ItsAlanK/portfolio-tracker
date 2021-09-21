@@ -139,8 +139,10 @@ def edit_positions(type, ticker):
     if check_positions_present(
             type, ticker, amount_sheet_tickers, price_sheet_tickers):
         data = input(
-            f"Please enter the amount of {ticker} you purchased "
-            "followed by the price you purchased it at")
+            f"Please enter the amount of {ticker} you purchased/sold "
+            "(using '-' to indicate a sale) "
+            "followed by the price you purchased it at\n"
+            "eg. '5 500' or '-10 25'")
         amount = data.split()[0]
         price = data.split()[1]
         print("Updating worksheet...")
