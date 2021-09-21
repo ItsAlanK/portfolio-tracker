@@ -126,14 +126,9 @@ def edit_positions(type, ticker):
     Edits worksheet info for desired asset with info provided
     by the user.
     """
-    if type == "S":
-        amount_sheet = SHEET.worksheet("stock-amounts")
-        price_sheet = SHEET.worksheet("stock-pos-prices")
-        ticker = ticker.pop()
-    elif type == "C":
-        amount_sheet = SHEET.worksheet("crypto-amounts")
-        price_sheet = SHEET.worksheet("crypto-pos-prices")
-        ticker = ticker.pop()
+    amount_sheet = assign_sheets_type(type, ticker)[0]
+    price_sheet = assign_sheets_type(type, ticker)[1]
+    ticker = ticker.pop()
     amount_sheet_tickers = amount_sheet.get_all_values()[0]
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
@@ -183,14 +178,9 @@ def next_available_row(worksheet, column):
 
 
 def create_position(type, ticker):
-    if type == "S":
-        amount_sheet = SHEET.worksheet("stock-amounts")
-        price_sheet = SHEET.worksheet("stock-pos-prices")
-        ticker = ticker.pop()
-    elif type == "C":
-        amount_sheet = SHEET.worksheet("crypto-amounts")
-        price_sheet = SHEET.worksheet("crypto-pos-prices")
-        ticker = ticker.pop()
+    amount_sheet = assign_sheets_type(type, ticker)[0]
+    price_sheet = assign_sheets_type(type, ticker)[1]
+    ticker = ticker.pop()
     amount_sheet_tickers = amount_sheet.get_all_values()[0]
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
@@ -198,3 +188,13 @@ def create_position(type, ticker):
         print("removing position")
     else:
         print("Creating new position")
+
+
+def assign_sheets_type(type, ticker):
+    if type == "S":
+        amount_sheet = SHEET.worksheet("stock-amounts")
+        price_sheet = SHEET.worksheet("stock-pos-prices")
+    elif type == "C":
+        amount_sheet = SHEET.worksheet("crypto-amounts")
+        price_sheet = SHEET.worksheet("crypto-pos-prices")
+    return amount_sheet, price_sheet
