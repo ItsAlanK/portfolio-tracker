@@ -2,10 +2,9 @@ from srv import validate as val, pricedata, portfolio
 import finnhub
 try:
     import env
+    FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 except ImportError:
     print("Importing from heroku")
-
-FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
 
 
 def start_program():
