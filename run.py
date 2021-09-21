@@ -1,10 +1,9 @@
 from srv import validate as val, pricedata, portfolio
 import finnhub
-try:
-    import env
-    FINNHUB_CLIENT = finnhub.Client(api_key=env.FINNHUB_KEY)
-except ImportError:
-    print("Importing from heroku")
+from decouple import config
+
+FINNHUB_CLIENT_KEY = config("FINNHUB_KEY")
+FINNHUB_CLIENT = finnhub.Client(api_key=FINNHUB_CLIENT_KEY)
 
 
 def start_program():
@@ -12,6 +11,7 @@ def start_program():
     Provide opening option to user and runs appropriate
     function based on the response given.
     """
+    print(FINNHUB_CLIENT)
     expected_responses = ["L", "P"]
     message = "If you would like to check Live Stock or "\
         f"Crypto prices press {expected_responses[0]}. "\
