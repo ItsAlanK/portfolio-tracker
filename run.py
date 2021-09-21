@@ -11,7 +11,6 @@ def start_program():
     Provide opening option to user and runs appropriate
     function based on the response given.
     """
-    print(FINNHUB_CLIENT)
     expected_responses = ["L", "P"]
     message = "If you would like to check Live Stock or "\
         f"Crypto prices press {expected_responses[0]}. "\
