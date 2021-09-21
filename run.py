@@ -107,7 +107,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
             f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
             "by the ticker/crypto symbol combo you wish to edit, "\
             "separated with a space (eg S AMC, C BTC): \n"
-        complex_response = complex_query(search, expected_types)[0]
+        complex_response = complex_query(search, expected_types)
         response_type = complex_response[0]
         response_ticker = complex_response[1]
         portfolio.edit_positions(response_type, response_ticker)
