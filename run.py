@@ -33,40 +33,17 @@ def live_search():
     Formats ticker for crypto if c is chosen.
     Takes user's inputs and provides market data for the given ticker.
     """
-    while True:
-        expected_search_types = ["C", "S"]
-        search = input(
-                f"Enter {expected_search_types[0]} if you wish to search a "
-                f"cryptocurrency or {expected_search_types[1]} for "
-                "a stock\nfollowed by the ticker/crypto symbol "
-                "combo you wish to view, separated with "
-                "a space (eg S AMC, C BTC): \n"
-                )
-        search_split = search.split()
-        try:
-            if len(search_split) != 2:
-                raise ValueError(
-                    "You must enter exactly 2 values separated by a space, "
-                    f"you entered {len(search_split)}"
-                )
-        except ValueError as e:
-            print(f"Invalid input: {e}")
-        else:
-            search_type = search_split[0].upper()
-            if val.validate_choice(search_type, expected_search_types):
-                if search_type == "S":
-                    requested_ticker = search.split()[1].upper()
-                elif search_type == "C":
-                    requested_ticker = val.format_crypto(
-                        search.split()[1].upper()
-                    )
-                valid_tickers = pricedata.get_all_symbols(
-                    search_type, FINNHUB_CLIENT)
-                if val.validate_choice(requested_ticker, valid_tickers):
-                    break
-    requested_ticker_list = [requested_ticker]
+    expected_search_types = ["C", "S"]
+    search = f"Enter {expected_search_types[0]} if you wish to search a "\
+        f"cryptocurrency or {expected_search_types[1]} for "\
+        "a stock\nfollowed by the ticker/crypto symbol "\
+        "combo you wish to view, separated with "\
+        "a space (eg S AMC, C BTC): \n"
+    search_query = complex_query(search, expected_search_types)
+    search_type = search_query[0]
+    requested_ticker = search_query[1]
     live_price = pricedata.get_live_data(
-        search_type, requested_ticker_list, FINNHUB_CLIENT)
+        search_type, requested_ticker, FINNHUB_CLIENT)
     print(f"The current price for {requested_ticker} is ${live_price}\n")
     navigate()
 
@@ -125,7 +102,12 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
     if response == expected_responses[0]:
         print("Creating new position...")
     elif response == expected_responses[1]:
-        print("Editing a position...")
+        expected_types = ["C", "S"]
+        search = f"Enter {expected_types[0]} if you wish to edit a "\
+            f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
+            "by the ticker/crypto symbol combo you wish to edit, "\
+            "separated with a space (eg S AMC, C BTC): \n"
+        print(complex_query(search, expected_types))
     elif response == expected_responses[2]:
         portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
     elif response == expected_responses[3]:
@@ -149,6 +131,42 @@ def navigate():
         live_search()
     elif response == expected_responses[1]:
         start_program()
+
+
+def complex_query(message, expected_responses):
+    """
+    Takes given message and expected responses to request
+    multiple pieces of input from the user at once and validates
+    them looking for the format "expected_response ticker"
+    eg S AMC
+    """
+    while True:
+        user_input = input(message)
+        input_split = user_input.split()
+        try:
+            if len(input_split) != len(expected_responses):
+                raise ValueError(
+                    f"You must enter exactly {len(expected_responses)} "
+                    "values separated by a space, "
+                    f"you entered {len(input_split)}"
+                )
+        except ValueError as e:
+            print(f"Invalid input: {e}")
+        else:
+            asset_type = input_split[0].upper()
+            if val.validate_choice(asset_type, expected_responses):
+                if asset_type == "S":
+                    requested_ticker = input_split[1].upper()
+                elif asset_type == "C":
+                    requested_ticker = val.format_crypto(
+                        input_split[1].upper()
+                    )
+                valid_tickers = pricedata.get_all_symbols(
+                    asset_type, FINNHUB_CLIENT
+                )
+                if val.validate_choice(requested_ticker, valid_tickers):
+                    requested_ticker_list = [requested_ticker]
+                    return asset_type, requested_ticker_list
 
 
 def main():
