@@ -100,7 +100,7 @@ def check_positions_present(type, ticker, amount_sheet, price_sheet):
         if (ticker[0] not in amount_sheet and
                 ticker[0] not in price_sheet):
             raise ValueError(
-                "The ticker you've chosen is not present in worksheet"
+                "The ticker you've chosen is not present in portfolio"
             )
     except ValueError as e:
         print(f"Invalid input: {e}")
@@ -124,6 +124,26 @@ def edit_positions(type, ticker):
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
             type, ticker, amount_sheet_tickers, price_sheet_tickers):
-        print("present in file")
+        data = input(
+            f"Please enter the amount of {ticker} you purchased "
+            "followed by the price you purchased it at")
+        amount = data.split()[0]
+        price = data.split()[1]
+        print("Updating worksheet...")
+        column = amount_sheet.find(ticker[0]).col
+        row = next_available_row(amount_sheet, column)
+        amount_sheet.update_cell(row, column, amount)
+        price_sheet.update_cell(row, column, price)
+        print(f"{amount} {ticker} at ${price} added to portfolio")
     else:
-        print("Not present")
+        print("Not present in file")
+
+
+def next_available_row(worksheet, column):
+    """
+    Finds next empty row of column provided for a worksheet and returns
+    row value.
+    https://bit.ly/3ApiyzI
+    """
+    str_list = list(filter(None, worksheet.col_values(column)))
+    return str(len(str_list)+1)
