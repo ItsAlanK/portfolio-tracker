@@ -166,7 +166,7 @@ def check_positions_present(type, ticker, amount_sheet, price_sheet):
                 "The ticker you've chosen is not present in portfolio"
             )
     except ValueError as e:
-        print(f"Invalid input: {e}")
+        print(f"{e}")
         return False
     else:
         return True
@@ -180,3 +180,21 @@ def next_available_row(worksheet, column):
     """
     str_list = list(filter(None, worksheet.col_values(column)))
     return str(len(str_list)+1)
+
+
+def create_position(type, ticker):
+    if type == "S":
+        amount_sheet = SHEET.worksheet("stock-amounts")
+        price_sheet = SHEET.worksheet("stock-pos-prices")
+        ticker = ticker.pop()
+    elif type == "C":
+        amount_sheet = SHEET.worksheet("crypto-amounts")
+        price_sheet = SHEET.worksheet("crypto-pos-prices")
+        ticker = ticker.pop()
+    amount_sheet_tickers = amount_sheet.get_all_values()[0]
+    price_sheet_tickers = price_sheet.get_all_values()[0]
+    if check_positions_present(
+            type, ticker, amount_sheet_tickers, price_sheet_tickers):
+        print("removing position")
+    else:
+        print("Creating new position")

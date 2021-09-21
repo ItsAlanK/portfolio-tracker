@@ -100,7 +100,15 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
     response = val.basic_input_request(message, expected_responses)
 
     if response == expected_responses[0]:
-        print("Creating new position...")
+        expected_types = ["C", "S"]
+        search = f"Enter {expected_types[0]} if you wish to add/remove a "\
+            f"cryptocurrency position or {expected_types[1]} for a "\
+            "stock\nfollowed by the ticker/crypto symbol combo you "\
+            "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
+        complex_response = complex_query(search, expected_types)
+        response_type = complex_response[0]
+        response_ticker = val.remove_crypto_format(complex_response[1])
+        portfolio.create_position(response_type, response_ticker)
     elif response == expected_responses[1]:
         expected_types = ["C", "S"]
         search = f"Enter {expected_types[0]} if you wish to edit a "\
