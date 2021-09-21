@@ -74,6 +74,18 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 
 
 ## Deployment ##
+This project is deployed to [Heroku](https://www.heroku.com) which is where it is available to view publicly at [Live App](https://itsalank-portfolio-tracker.herokuapp.com/). The project was developed using [Gitpod](https://gitpod.io/) with Github serving as host for my respository. This project can be deployed locally using and IDE such as gitpod or remote to a hosting platform such as Heroku.
+
+### Local Deployment ###
+On Github:
+* From the site's repository on GitHub, navigate to the settings via the link found in the ribbon menu below the repo name.
+* Select the "pages" section in the sidebar menu to the left of the screen.
+* In the "Source" section, select the branch you wish to use as the source of the site if you have multiple branches/versions. Otherwise select the main branch.
+* Select the root folder and click save.
+* Deployment may take a few seconds or minutes, after which navigate back to the pages section and find the link to the live site highlighted in green.
+* _Alternatively once the page site is deployed on pages you can find a link to the site via the enviroments section to the right of the main repository page._
+
+### Heroku Deployment ###
 
 
 ## Technologies ##
