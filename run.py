@@ -174,10 +174,10 @@ def complex_query(message, expected_responses):
 
 def main():
     """
-    Run all program functions
+    Welcome user and start the program
     """
+    print("Welcome to your own personal Portfolio Tracker!\n")
     start_program()
 
 
-print("Welcome to your own personal Portfolio Tracker!\n")
 main()
