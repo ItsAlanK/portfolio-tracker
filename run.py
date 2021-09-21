@@ -109,7 +109,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
             "separated with a space (eg S AMC, C BTC): \n"
         complex_response = complex_query(search, expected_types)
         response_type = complex_response[0]
-        response_ticker = complex_response[1]
+        response_ticker = val.remove_crypto_format(complex_response[1])
         portfolio.edit_positions(response_type, response_ticker)
     elif response == expected_responses[2]:
         portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
