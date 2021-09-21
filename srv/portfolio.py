@@ -63,10 +63,36 @@ def calculate_total_value(stock_values, crypto_values):
     return round(stock_total + crypto_total, 2)
 
 
+def calculate_pl(total_value, stock_amounts, crypto_amounts):
+    """
+    Displays P/L of portfolio by calculating money spent on assets
+    and comparing it to total_value of the portfolio currently.
+    """
+    stock_buyin_raw = SHEET.worksheet("stock-pos-prices").get_all_values()
+    crypto_buyin_raw = SHEET.worksheet("crypto-pos-prices").get_all_values()
+    stock_raw = SHEET.worksheet("stock-pos-prices").get_all_values()
+    crypto_raw = SHEET.worksheet("crypto-pos-prices").get_all_values()
+
+    buy_totals_stock = calculate_total_buyin(stock_buyin_raw, stock_amounts)
+    buy_totals_crypto = calculate_total_buyin(crypto_buyin_raw, crypto_amounts)
+    realised_profit_stock = calculate_realised(stock_raw, stock_amounts)
+    realised_profit_crypto = calculate_realised(crypto_raw, crypto_amounts)
+    total_spent = round(buy_totals_stock + buy_totals_crypto, 2)
+    total_value_realised = (
+        total_value + realised_profit_stock + realised_profit_crypto)
+    total_pl = round(total_value_realised - total_spent, 2)
+
+    print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
+    print(f"The current total value of your portfolio is: ${total_value}\n")
+    print(f"Your current P/L is: ${total_pl}")
+
+
 def calculate_total_buyin(prices, amounts):
     """
     Takes lists of prices and amounts of assets at each buyin value
     to calculate money spent on assets.
+    Replaces any negative amounts with zero as these
+    are realised gains/losses.
     """
     buy_prices = convert_to_floats(prices[1:])
     for (list, price) in zip(amounts, buy_prices):
@@ -86,29 +112,8 @@ def calculate_realised(prices, amounts):
             if list[i] < 0:
                 list[i] *= -1
                 realised_profits.append(list[i] * price[i])
-    buy_values = np.multiply(buy_prices, amounts)
-    buy_totals = np.sum(buy_values)
-    return buy_totals
-
-
-def calculate_pl(total_value, stock_amounts, crypto_amounts):
-    """
-    Displays P/L of portfolio by calculating money spent on assets
-    and comparing it to total_value of the portfolio currently.
-    """
-    stock_buyin_raw = SHEET.worksheet("stock-pos-prices").get_all_values()
-    crypto_buyin_raw = SHEET.worksheet("crypto-pos-prices").get_all_values()
-
-    buy_totals_stock = calculate_total_buyin(stock_buyin_raw, stock_amounts)
-    buy_totals_crypto = calculate_total_buyin(crypto_buyin_raw, crypto_amounts)
-    realised_profit = calculate_realised(stock_buyin_raw, stock_amounts)
-    total_spent = round(buy_totals_stock + buy_totals_crypto, 2)
-    total_value_realised = total_spent + realised_profit
-    total_pl = round(total_value_realised - total_spent, 2)
-
-    print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
-    print(f"The current total value of your portfolio is: ${total_value}\n")
-    print(f"Your current P/L is: ${total_pl}")
+    realised_total = np.sum(realised_profits)
+    return realised_total
 
 
 def edit_positions(type, ticker):
