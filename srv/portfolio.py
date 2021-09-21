@@ -92,6 +92,23 @@ def calculate_pl(total_value, stock_amounts, crypto_amounts):
     print(f"Your current P/L is: ${total_pl}")
 
 
+def check_positions_present(type, ticker, amount_sheet, price_sheet):
+    """
+    Confirms requested ticker is present in worksheet.
+    """
+    try:
+        if (ticker[0] not in amount_sheet and
+                ticker[0] not in price_sheet):
+            raise ValueError(
+                "The ticker you've chosen is not present in worksheet"
+            )
+    except ValueError as e:
+        print(f"Invalid input: {e}")
+        return False
+    else:
+        return True
+
+
 def edit_positions(type, ticker):
     """
     Edits worksheet info for desired asset with info provided
@@ -103,3 +120,10 @@ def edit_positions(type, ticker):
     elif type == "C":
         amount_sheet = SHEET.worksheet("crypto-amounts")
         price_sheet = SHEET.worksheet("crypto-pos-prices")
+    amount_sheet_tickers = amount_sheet.get_all_values()[0]
+    price_sheet_tickers = price_sheet.get_all_values()[0]
+    if check_positions_present(
+            type, ticker, amount_sheet_tickers, price_sheet_tickers):
+        print("present in file")
+    else:
+        print("Not present")
