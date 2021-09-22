@@ -144,6 +144,7 @@ def navigate():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
+        val.clear()
         start_program()
 
 

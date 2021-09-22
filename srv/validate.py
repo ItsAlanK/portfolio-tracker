@@ -1,3 +1,6 @@
+from os import system, name
+
+
 def validate_choice(response, expected_response):
     """
     Check if response provided is valid.
@@ -57,3 +60,17 @@ def remove_crypto_format(tickers):
     basic_tickers = [s.replace("BINANCE:", "") for s in tickers]
     basic_tickers_final = [s.replace("USDT", "") for s in basic_tickers]
     return basic_tickers_final
+
+
+def clear():
+    """
+    Clears terminal when called.
+    https://www.geeksforgeeks.org/clear-screen-python/
+    """
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux
+    else:
+        _ = system('clear')
