@@ -24,19 +24,6 @@ def validate_choice(response, expected_response):
     return True
 
 
-def basic_input_request(message, expected_responses):
-    """
-    Takes a message and expected responses to create a
-    basic input request and validate responses against
-    expected_responses.
-    """
-    while True:
-        response = input(message).upper()
-        if validate_choice(response, expected_responses):
-            break
-    return response
-
-
 def format_crypto(tickers):
     """
     Takes list or string containing ticker informations
