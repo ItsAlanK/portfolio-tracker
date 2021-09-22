@@ -156,19 +156,22 @@ def edit_positions(type, ticker):
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
             type, ticker, amount_sheet_tickers, price_sheet_tickers):
-        data = input(
-            f"\nPlease enter the amount of {ticker} you purchased/sold "
-            "(using '-' to indicate a sale) "
-            "followed by the price you purchased it at\n"
-            "eg. '5 500' or '-10 25'\n")
-        amount = data.split()[0]
-        price = data.split()[1]
-        print("Updating portfolio...")
-        column = amount_sheet.find(ticker).col
-        row = next_available_row(amount_sheet, column)
-        amount_sheet.update_cell(row, column, amount)
-        price_sheet.update_cell(row, column, price)
-        print(f"{amount} {ticker} at ${price} added to portfolio")
+        while True:
+            data = input(
+                f"\nPlease enter the amount of {ticker} you purchased/sold "
+                "(using '-' to indicate a sale) "
+                "followed by the price you purchased it at\n"
+                "eg. '5 500' or '-10 25'\n")
+            if confirm_numbers(data.split()):
+                amount = data.split()[0]
+                price = data.split()[1]
+                print("Updating portfolio...")
+                column = amount_sheet.find(ticker).col
+                row = next_available_row(amount_sheet, column)
+                amount_sheet.update_cell(row, column, amount)
+                price_sheet.update_cell(row, column, price)
+                print(f"{amount} {ticker} at ${price} added to portfolio")
+                break
     else:
         print("Not present in file")
 
