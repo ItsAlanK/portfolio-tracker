@@ -126,8 +126,8 @@ def edit_positions(type, ticker):
     Edits worksheet info for desired asset with info provided
     by the user.
     """
-    amount_sheet = assign_sheets_type(type, ticker)[0]
-    price_sheet = assign_sheets_type(type, ticker)[1]
+    amount_sheet = assign_sheets_type(type)[0]
+    price_sheet = assign_sheets_type(type)[1]
     ticker = ticker.pop()
     amount_sheet_tickers = amount_sheet.get_all_values()[0]
     price_sheet_tickers = price_sheet.get_all_values()[0]
@@ -187,8 +187,8 @@ def next_available_column(worksheet, row):
 
 
 def create_position(type, ticker):
-    amount_sheet = assign_sheets_type(type, ticker)[0]
-    price_sheet = assign_sheets_type(type, ticker)[1]
+    amount_sheet = assign_sheets_type(type)[0]
+    price_sheet = assign_sheets_type(type)[1]
     ticker = ticker.pop()
     amount_sheet_tickers = amount_sheet.get_all_values()[0]
     price_sheet_tickers = price_sheet.get_all_values()[0]
@@ -216,7 +216,11 @@ def create_position(type, ticker):
         print(f"Added {amount} {ticker} at {price} to your portfolio\n")
 
 
-def assign_sheets_type(type, ticker):
+def assign_sheets_type(type):
+    """
+    Assigns correct pari of sheets, either crypto or stock
+    depending on type in params.
+    """
     if type == "S":
         amount_sheet = SHEET.worksheet("stock-amounts")
         price_sheet = SHEET.worksheet("stock-pos-prices")
