@@ -144,6 +144,32 @@ Using these two sheets one can calculate the amount of money spent on each asset
 <a name="calculations"></a>
 
 ### Calculations ###
+![Values calculated](docs/images/values-screenshot.png)
+- When calculating live portfolio values above the tool:
+    - Gets the sum total amount of each asset in the portfolio individually.
+    - Gets the live price for each of the tickers in the portfolio.
+    - Muliplies the live price by the amount held to get a live value.
+    ```
+    (total amount of asset held) * (live price of asset) = Value of asset held
+    ```
+
+![Profit Calculated](docs/images/profit-calculated-screenshot.png)
+- When calculating total amount spent on portfolio the tool:
+    - Multiplies each individual amounts values for each ticker by its corresponding pos-position value to get the amount spend at that particular transaction. (not using any negative amounts as these indicate sales)
+    - Add together each result for each ticker to get total spent per asset.
+    - Add these values together for total spent on the portfolio.
+
+- When calculating total current value of portfolio the tool:
+    - Takes all the live values calculated earlier and adds them together to get the total current value.
+
+- When calculating the current P/L of the portfolio the tool:
+    - Takes previous valules calculated in last sections.
+    - Checks for negative values in amounts sheet indicating sales. If any are present these are multiplied by their corresponding pos-positions price(ignoring the negative) which is the price it was sold at. These values are realised gains and so are not considered when calculating amount spent on the portfolio.
+    - Amount spent on portfolio is subtracted from the current value of the portfolio.
+    - Any realised gains are added the result of last step which gives the overall profit/loss of the portfolio.
+    ```
+    P/L = (Current_value - Money_spent) + Realised_gains
+    ```
 
 <a name="testing"></a>
 
