@@ -127,6 +127,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
         elif response == expected_responses[2]:
             portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
         elif response == expected_responses[3]:
+            format.clear()
             start_program()
 
 
