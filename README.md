@@ -5,7 +5,7 @@ In order to do this on a regular basis manually this requires searching prices a
 
 This idea comes from a personal desire for an app such as this as I currently plot my own profits/losses through a spreadsheet which I have had to create and maintain manually. This project will aid in automating some of the processes that I carry out daily.
 
-![Responsive Image]()
+![Example Image](docs/images/main-screen.png)
 
 ## UX ##
 ### User Goals ###
@@ -33,7 +33,7 @@ This idea comes from a personal desire for an app such as this as I currently pl
 ### Flowcharts ###
 This flowchart tracks to basic steps and checks the program must make to run based on each of the user's potential requirements and inputs. 
 
-![Logic Flowchart](docs/portfolio-tracker-flowchart.png)
+![Logic Flowchart](docs/images/portfolio-tracker-flowchart.png)
 
 Flowchart made using [Lucidchart](https://www.lucidchart.com)
 
