@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
+from srv.inputs import basic_input_request
 
 
 SCOPE = [
@@ -107,10 +108,19 @@ def create_position(type, ticker):
     price_sheet_tickers = price_sheet.get_all_values()[0]
     if check_positions_present(
             type, ticker, amount_sheet_tickers, price_sheet_tickers):
-        print(f"Removing {ticker} from your portfolio.")
-        column = amount_sheet.find(ticker).col
-        amount_sheet.delete_columns(column)
-        price_sheet.delete_columns(column)
+        expected_response = ["Y", "N"]
+        message = f"\nAre you sure you wish to remove {ticker} "\
+            "from your portfolio?\n"\
+            "This cannot be undone.\n"\
+            f"Enter {expected_response[0]} or {expected_response[1]}\n"
+        confirmation = basic_input_request(message, expected_response)
+        if confirmation == "Y":
+            print(f"Removing {ticker} from your portfolio.")
+            column = amount_sheet.find(ticker).col
+            amount_sheet.delete_columns(column)
+            price_sheet.delete_columns(column)
+        else:
+            print("No Delete")
     else:
         print(f"Adding {ticker} to your portfolio")
         data = input(
