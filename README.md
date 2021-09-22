@@ -21,6 +21,9 @@ This idea comes from a personal desire for an app such as this as I currently pl
 - [Features](#features)
     - [Existing Features](#existing-features)
     - [Potential Future Feature](#future-features)
+- [Data](#data)
+    - [Structure](#structure)
+    - [Calculations](#calculations)
 - [Testing](#testing)
     - [PEP8](#validator)
     - [User Stories](#user-story-testing)
@@ -121,6 +124,24 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 ### Potential Future Features
 
 - Expand functionality to currencies and commodities
+
+<a name="data"></a>
+
+## Data ##
+
+<a name="structure"></a>
+
+### Structure ###
+User's portfolio data is stores in a Google Sheets document. This document contains 4 worksheets, 2 relating to stock data and 2 for cryptocurrency data. Each pairing has a worksheet called ###-pos-positions and ###-amounts.
+
+- The pos-positions worksheet stores tickers along with the prices at which the corresponding ticker was purchased at. Each row corresponds to an amount in the same cell position in the amounts worksheet.
+
+- The amounts worksheet contains the amount of units of the stock or crypto which was bought at the corresponding price in the pos-positions sheet. Negative values in this sheet imply that an amount of the asset was sold at the price in its corresponding pos-positions cell.
+
+Using these two sheets one can calculate the amount of money spent on each asset.
+<a name="calculations"></a>
+
+### Calculations ###
 
 <a name="testing"></a>
 
