@@ -178,7 +178,7 @@ Using these two sheets one can calculate the amount of money spent on each asset
 <a name="validator"></a>
 
 ### PEP8 ###
-All Python files follow all PEP8 standards and requirements with no errors ocurring
+All Python files follow all PEP8 standards and requirements with no errors ocurring.
 
 <a name="user-story-testing"></a>
 
@@ -205,12 +205,13 @@ This project is deployed to [Heroku](https://www.heroku.com) which is where it i
 
 ## Technologies ##
 Technologies used in this project:
-- [Python](https://www.python.org/)
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- [GSpread](https://docs.gspread.org/en/v4.0.1/)
-- [Google OAuth](https://developers.google.com/identity/protocols/oauth2)
-- [Finnhub.io](https://finnhub.io/)
-- [Finnhub-python](https://github.com/Finnhub-Stock-API/finnhub-python)
+- [Python](https://www.python.org/) is the main technology used in creating all the functionality of this tool using some libraries to expand it's capabilities.
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) is used simply to house the terminal and was created in the [template](https://github.com/Code-Institute-Org/python-essentials-template) used for the repo.
+- [GSpread](https://docs.gspread.org/en/v4.0.1/) is used in order to receive and manipulate data found in the Google Sheets spreadsheets.
+- [Google OAuth](https://developers.google.com/identity/protocols/oauth2) is required in order to use the Google API's to access the spreadsheets.
+- [Finnhub.io](https://finnhub.io/) is the API used to access live price data for stocks and crypto.
+- [Finnhub-python](https://github.com/Finnhub-Stock-API/finnhub-python) is a library used to extent the functionality of the finnhub API
+- [Numpy](https://numpy.org/) is used in order to create and perform calculations with multidimensional arrays. This allows some of the more complex arithmetic required when adding or multiplying nested lists of values by their indices.
 
 <a name="credits"></a>
 
