@@ -254,4 +254,5 @@ def calculate_pl(total_value, stock_amounts, crypto_amounts):
 
     print(f"\nThe total amount spent on your portfolio is: ${total_spent}")
     print(f"The current total value of your portfolio is: ${total_value}\n")
-    print(f"Your current P/L is: ${total_pl}")
+    print(f"Your current P/L is: ${total_pl}\n")
+    return_to_options()
