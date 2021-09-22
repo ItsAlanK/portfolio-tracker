@@ -131,7 +131,7 @@ def navigate():
     Give user option of searching another ticker or
     return to start menu options.
     """
-    expected_responses = ["A", "B"]
+    expected_responses = ["A", "H"]
     message = "If you wish to search another item "\
         f"press {expected_responses[0]} \n"\
         "If you wish to return to home "\
