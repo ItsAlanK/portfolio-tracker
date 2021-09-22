@@ -120,8 +120,6 @@ def create_position(type, ticker):
             column = amount_sheet.find(ticker).col
             amount_sheet.delete_columns(column)
             price_sheet.delete_columns(column)
-        else:
-            print("No Delete")
         return_to_options()
     else:
         print(f"Adding {ticker} to your portfolio")
