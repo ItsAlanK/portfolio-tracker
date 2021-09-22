@@ -45,7 +45,8 @@ def live_search():
     requested_ticker = search_query[1]
     live_price = pricedata.get_live_data(
         search_type, requested_ticker, FINNHUB_CLIENT)
-    print(f"The current price for {requested_ticker} is ${live_price}\n")
+    print(f"The current price for {requested_ticker.pop()} "
+          f"is ${live_price.pop()}\n")
     navigate()
 
 
