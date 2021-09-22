@@ -37,6 +37,8 @@ This flowchart tracks to basic steps and checks the program must make to run bas
 
 Flowchart made using [Lucidchart](https://www.lucidchart.com)
 
+Flowchart was adapted slightly as endpoints for portfolio editing options now return to the portfolio options chain rather than the start of the program to eliminate some repitition if the user wishes to make multiple changes one after the other.
+
 ### Wireframes ###
 Wireframes for the project can be found below. As this project is command line based designs will remain largely the same throughout with accomodations made for varying screensizes.
 
