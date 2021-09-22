@@ -106,10 +106,10 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
 
         if response == expected_responses[0]:
             expected_types = ["C", "S"]
-            search = f"\nEnter {expected_types[0]} if you wish to add/remove a "\
-                f"cryptocurrency position or {expected_types[1]} for a "\
-                "stock\nfollowed by the ticker/crypto symbol combo you "\
-                "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
+            search = f"\nEnter {expected_types[0]} if you wish to add/remove "\
+                f"a cryptocurrency position or {expected_types[1]} for a "\
+                "stock\nfollowed by the ticker/crypto symbol combo you wish "\
+                "to add/remove, separated with a space (eg S AMC, C BTC): \n"
             complex_response = inputs.complex_query(search, expected_types)
             response_type = complex_response[0]
             response_ticker = format.remove_crypto_format(complex_response[1])
@@ -117,9 +117,9 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
         elif response == expected_responses[1]:
             expected_types = ["C", "S"]
             search = f"\nEnter {expected_types[0]} if you wish to edit a "\
-                f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
-                "by the ticker/crypto symbol combo you wish to edit, "\
-                "separated with a space (eg S AMC, C BTC): \n"
+                f"cryptocurrency or {expected_types[1]} for a stock\n"\
+                "followed by the ticker/crypto symbol combo you wish "\
+                "to edit, separated with a space (eg S AMC, C BTC): \n"
             complex_response = inputs.complex_query(search, expected_types)
             response_type = complex_response[0]
             response_ticker = format.remove_crypto_format(complex_response[1])
