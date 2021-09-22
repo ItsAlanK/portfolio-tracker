@@ -187,6 +187,11 @@ def next_available_column(worksheet, row):
 
 
 def create_position(type, ticker):
+    """
+    If ticker provided is not present in portfolio, ticker will
+    be added with data input by user. If ticker is present in
+    portfolio ticker will be removed.
+    """
     amount_sheet = assign_sheets_type(type)[0]
     price_sheet = assign_sheets_type(type)[1]
     ticker = ticker.pop()
