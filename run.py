@@ -24,6 +24,7 @@ def start_program():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
+        val.clear()
         print("Obtaining position data...\n")
         portfolio_search()
 
@@ -64,7 +65,7 @@ def portfolio_search():
     stock_live_prices = pricedata.get_live_data(
         "S", stock_portfolio_tickers, FINNHUB_CLIENT)
     stock_values = portfolio.calculate_values(stock_amounts, stock_live_prices)
-    print("Your current portfolio contains: ")
+    print("Your current portfolio contains: \n")
 
     crypto_portfolio_tickers = all_portfolio_amounts[1][0]
     val.format_crypto(crypto_portfolio_tickers)
@@ -98,7 +99,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
         f"{expected_responses[1]} Edit an existing position?\n"\
         f"{expected_responses[2]} Calculate current P/L?\n"\
         f"{expected_responses[3]} Return to start?\n"\
-        "Input the number of your desired option.\n"
+        "\nInput the number of your desired option.\n"
 
     response = val.basic_input_request(message, expected_responses)
 
