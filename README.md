@@ -164,7 +164,7 @@ Using these two sheets one can calculate the amount of money spent on each asset
 
 - When calculating the current P/L of the portfolio the tool:
     - Takes previous valules calculated in last sections.
-    - Checks for negative values in amounts sheet indicating sales. If any are present these are multiplied by their corresponding pos-positions price(ignoring the negative) which is the price it was sold at. These values are realised gains and so are not considered when calculating amount spent on the portfolio.
+    - Checks for negative values in amounts sheet indicating sales. If any are present these are multiplied by their corresponding pos-positions price (and makes positive) which is the price it was sold at. These values are realised gains and so are not considered when calculating amount spent on the portfolio.
     - Amount spent on portfolio is subtracted from the current value of the portfolio.
     - Any realised gains are added the result of last step which gives the overall profit/loss of the portfolio.
     ```
