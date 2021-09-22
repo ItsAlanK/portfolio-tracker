@@ -13,6 +13,7 @@
 
 <body>
     <div id="container">
+        <h1>Portfolio Tracker</h1>
         <div id="terminal"></div>
         <button onclick="window.location.reload()">Restart Program</button>
     </div>
@@ -22,6 +23,12 @@
             cols: 80,
             rows: 24
         });
+        if ($(window).width() < 820) {
+            term = new Terminal({
+                cols: 40,
+                rows: 24
+            });
+        };
         term.open(document.getElementById('terminal'));
         term.writeln('Running startup command: python3 run.py');
         term.writeln('');
@@ -40,4 +47,5 @@
         document.getElementsByClassName("xterm-helper-textarea")[0].focus();
     </script>
 </body>
+
 </html>
