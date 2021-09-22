@@ -23,33 +23,33 @@
             cols: 80,
             rows: 24
         });
-        if ($(window).width() < 820) {
-            term = new Terminal({
-                cols: 50,
-                rows: 24
-            });
-        } else if ($(window).width() < 600) {
+        if ($(window).width() < 600) {
             term = new Terminal({
                 cols: 35,
                 rows: 24
             });
-        }
-        term.open(document.getElementById('terminal'));
-        term.writeln('Running startup command: python3 run.py');
-        term.writeln('');
+        } else if ($(window).width() < 820) {
+            term = new Terminal({
+                cols: 50,
+                rows: 24
+            });
+            term.open(document.getElementById('terminal'));
+            term.writeln('Running startup command: python3 run.py');
+            term.writeln('');
 
-        var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (
-            ':' + location.port) : '') + '/');
+            var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ?
+                (
+                    ':' + location.port) : '') + '/');
 
-        ws.onopen = function () {
-            new attach.attach(term, ws);
-        };
+            ws.onopen = function () {
+                new attach.attach(term, ws);
+            };
 
-        ws.onerror = function (e) {
-            console.log(e);
-        };
-        // Set focus in the terminal
-        document.getElementsByClassName("xterm-helper-textarea")[0].focus();
+            ws.onerror = function (e) {
+                console.log(e);
+            };
+            // Set focus in the terminal
+            document.getElementsByClassName("xterm-helper-textarea")[0].focus();
     </script>
 </body>
 
