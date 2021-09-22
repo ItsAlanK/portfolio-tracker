@@ -1,4 +1,4 @@
-from srv import validate as val, pricedata, portfolio, inputs
+from srv import validate as val, pricedata, portfolio, inputs, format
 import finnhub
 from decouple import config
 
@@ -24,7 +24,7 @@ def start_program():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
-        val.clear()
+        format.clear()
         print("Obtaining position data...\n")
         portfolio_search()
 
@@ -46,7 +46,7 @@ def live_search():
     requested_ticker = search_query[1]
     live_price = pricedata.get_live_data(
         search_type, requested_ticker, FINNHUB_CLIENT)
-    requested_ticker = val.remove_crypto_format(requested_ticker)
+    requested_ticker = format.remove_crypto_format(requested_ticker)
     print(f"The current price for {requested_ticker.pop()} "
           f"is ${live_price.pop()}\n")
     navigate()
@@ -68,13 +68,13 @@ def portfolio_search():
     print("Your current portfolio contains: \n")
 
     crypto_portfolio_tickers = all_portfolio_amounts[1][0]
-    val.format_crypto(crypto_portfolio_tickers)
+    format.format_crypto(crypto_portfolio_tickers)
     crypto_amounts = all_portfolio_amounts[1][1:]
     crypto_live_prices = pricedata.get_live_data(
         "C", crypto_portfolio_tickers, FINNHUB_CLIENT)
     crypto_values = portfolio.calculate_values(
         crypto_amounts, crypto_live_prices)
-    crypto_tickers = val.remove_crypto_format(crypto_portfolio_tickers)
+    crypto_tickers = format.remove_crypto_format(crypto_portfolio_tickers)
 
     print("Stock:")
     for (ticker, value) in zip(stock_portfolio_tickers, stock_values):
@@ -111,7 +111,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
             "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
         complex_response = inputs.complex_query(search, expected_types)
         response_type = complex_response[0]
-        response_ticker = val.remove_crypto_format(complex_response[1])
+        response_ticker = format.remove_crypto_format(complex_response[1])
         portfolio.create_position(response_type, response_ticker)
     elif response == expected_responses[1]:
         expected_types = ["C", "S"]
@@ -121,7 +121,7 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
             "separated with a space (eg S AMC, C BTC): \n"
         complex_response = inputs.complex_query(search, expected_types)
         response_type = complex_response[0]
-        response_ticker = val.remove_crypto_format(complex_response[1])
+        response_ticker = format.remove_crypto_format(complex_response[1])
         portfolio.edit_positions(response_type, response_ticker)
     elif response == expected_responses[2]:
         portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
@@ -145,7 +145,7 @@ def navigate():
     if response == expected_responses[0]:
         live_search()
     elif response == expected_responses[1]:
-        val.clear()
+        format.clear()
         start_program()
 
 

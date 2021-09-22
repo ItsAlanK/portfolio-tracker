@@ -1,5 +1,6 @@
-from srv.validate import validate_choice, format_crypto
+from srv.validate import validate_choice
 from srv.pricedata import get_all_symbols
+from srv.format import format_crypto
 from decouple import config
 import finnhub
 
