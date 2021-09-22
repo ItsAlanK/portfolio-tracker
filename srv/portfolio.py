@@ -114,9 +114,9 @@ def create_position(type, ticker):
     else:
         print(f"Adding {ticker} to your portfolio")
         data = input(
-            f"Please enter the amount of {ticker} you wish to add "
+            f"\nPlease enter the amount of {ticker} you wish to add "
             "followed by the price you purchased it at\n"
-            "eg. '5 500'")
+            "eg. '5 500'\n")
         amount = data.split()[0]
         price = data.split()[1]
         print("Updating portfolio...")
