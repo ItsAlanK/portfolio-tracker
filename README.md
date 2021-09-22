@@ -54,16 +54,25 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 
 ## Features ##
 ### Existing Features ###
-- Live stock/crypto price checker
-- Simple Command-Line Interface
-- Input validation
-- Saves and displays user's position sizes and buy-in prices
-- Calculates current value of user's positions
+- Live stock/crypto price checker:
+    - User can search all major stocks and cryptocurrency prices live without having to have them in their own portfolio.
+- Simple Command-Line Interface:
+    - The tool is controlled using a simple terminal with basic input prompts all clearly explained to the user for easy navigation.
+- Input validation:
+    - All user inputs are validated to ensure the correct inputs are provided to prevent errors. This includes the correct format, amount of inputs and that any tickers searched are valid. Any incorrect inputs give feedback to the user explaining why it was wrong with examples of the correct input format.
+- Saves and displays user's position sizes and buy-in prices:
+    - Using Gspread and Google Sheets the user can input and edit their own positions which are saved for future use.
+- Calculates current value of user's positions:
+    - Using the user's portfolio values saved in spreadsheets along with live price data, the tool can calculate the value of each of the user's assets and total portfolio value.
 - Calculates profit/loss of user's portfolio
-- Restart Program button
+    - Toll uses all previously mentioned data to calculate the overall profit or loss of the portfolio.
+- Save realized gains and losses and add as positions are closed:
+    - Buy inputting negative values and sell prices for position changes the user can log realised changes which are taken into consideration when calculating P/L.
+- Restart Program button:
+    - Should any unexpected errors occur the tool has a restart program button to reboot the tool.
 
 ### Potential Future Features
-- Save realized gains and losses and add as positions are closed
+
 - Expand functionality to currencies and commodities
 
 ## Testing ##
