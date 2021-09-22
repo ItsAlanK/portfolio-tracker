@@ -93,40 +93,41 @@ def portfolio_options(total_value, stock_amounts, crypto_amounts):
     Give user options for actions they can take to make changes
     to their portfolio. Runs correct function according to choice given.
     """
-    expected_responses = ["1", "2", "3", "4"]
-    message = f"\nDo you want to: \n"\
-        f"{expected_responses[0]} Create/Remove a position?\n"\
-        f"{expected_responses[1]} Edit an existing position?\n"\
-        f"{expected_responses[2]} Calculate current P/L?\n"\
-        f"{expected_responses[3]} Return to start?\n"\
-        "\nInput the number of your desired option.\n"
+    while True:
+        expected_responses = ["1", "2", "3", "4"]
+        message = f"\nDo you want to: \n"\
+            f"{expected_responses[0]} Create/Remove a position?\n"\
+            f"{expected_responses[1]} Edit an existing position?\n"\
+            f"{expected_responses[2]} Calculate current P/L?\n"\
+            f"{expected_responses[3]} Return to start?\n"\
+            "\nInput the number of your desired option.\n"
 
-    response = inputs.basic_input_request(message, expected_responses)
+        response = inputs.basic_input_request(message, expected_responses)
 
-    if response == expected_responses[0]:
-        expected_types = ["C", "S"]
-        search = f"\nEnter {expected_types[0]} if you wish to add/remove a "\
-            f"cryptocurrency position or {expected_types[1]} for a "\
-            "stock\nfollowed by the ticker/crypto symbol combo you "\
-            "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
-        complex_response = inputs.complex_query(search, expected_types)
-        response_type = complex_response[0]
-        response_ticker = format.remove_crypto_format(complex_response[1])
-        portfolio.create_position(response_type, response_ticker)
-    elif response == expected_responses[1]:
-        expected_types = ["C", "S"]
-        search = f"\nEnter {expected_types[0]} if you wish to edit a "\
-            f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
-            "by the ticker/crypto symbol combo you wish to edit, "\
-            "separated with a space (eg S AMC, C BTC): \n"
-        complex_response = inputs.complex_query(search, expected_types)
-        response_type = complex_response[0]
-        response_ticker = format.remove_crypto_format(complex_response[1])
-        portfolio.edit_positions(response_type, response_ticker)
-    elif response == expected_responses[2]:
-        portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
-    elif response == expected_responses[3]:
-        start_program()
+        if response == expected_responses[0]:
+            expected_types = ["C", "S"]
+            search = f"\nEnter {expected_types[0]} if you wish to add/remove a "\
+                f"cryptocurrency position or {expected_types[1]} for a "\
+                "stock\nfollowed by the ticker/crypto symbol combo you "\
+                "wish to add/remove, separated with a space (eg S AMC, C BTC): \n"
+            complex_response = inputs.complex_query(search, expected_types)
+            response_type = complex_response[0]
+            response_ticker = format.remove_crypto_format(complex_response[1])
+            portfolio.create_position(response_type, response_ticker)
+        elif response == expected_responses[1]:
+            expected_types = ["C", "S"]
+            search = f"\nEnter {expected_types[0]} if you wish to edit a "\
+                f"cryptocurrency or {expected_types[1]} for a stock\nfollowed "\
+                "by the ticker/crypto symbol combo you wish to edit, "\
+                "separated with a space (eg S AMC, C BTC): \n"
+            complex_response = inputs.complex_query(search, expected_types)
+            response_type = complex_response[0]
+            response_ticker = format.remove_crypto_format(complex_response[1])
+            portfolio.edit_positions(response_type, response_ticker)
+        elif response == expected_responses[2]:
+            portfolio.calculate_pl(total_value, stock_amounts, crypto_amounts)
+        elif response == expected_responses[3]:
+            start_program()
 
 
 def navigate():

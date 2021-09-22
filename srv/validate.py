@@ -37,3 +37,11 @@ def confirm_numbers(responses):
     else:
         print("Invalid data: you pust provide 2 numbers\n")
         return False
+
+
+def return_to_options():
+    """
+    Prints return to options notification and returns true for while loop"
+    """
+    print("\nReturning to portfolio options\n")
+    return True

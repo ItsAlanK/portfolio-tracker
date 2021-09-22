@@ -2,7 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
 from srv.inputs import basic_input_request
-from srv.validate import confirm_numbers
+from srv.validate import confirm_numbers, return_to_options
 
 
 SCOPE = [
@@ -122,6 +122,7 @@ def create_position(type, ticker):
             price_sheet.delete_columns(column)
         else:
             print("No Delete")
+        return_to_options()
     else:
         print(f"Adding {ticker} to your portfolio")
         while True:
@@ -132,7 +133,7 @@ def create_position(type, ticker):
             if confirm_numbers(data.split()):
                 amount = data.split()[0]
                 price = data.split()[1]
-                print("Updating portfolio...")
+                print("Updating portfolio...\n")
                 row = 1
                 column = next_available_column(amount_sheet, row)
                 amount_sheet.update_cell(row, column, ticker)
@@ -140,8 +141,9 @@ def create_position(type, ticker):
                 price_sheet.update_cell(row, column, ticker)
                 price_sheet.update_cell(row + 1, column, price)
                 print(
-                    f"Added {amount} {ticker} at {price} to your portfolio\n")
+                    f"Added {amount} {ticker} at ${price} to your portfolio\n")
                 break
+        return_to_options()
 
 
 def edit_positions(type, ticker):
@@ -172,8 +174,10 @@ def edit_positions(type, ticker):
                 price_sheet.update_cell(row, column, price)
                 print(f"{amount} {ticker} at ${price} added to portfolio")
                 break
+        return_to_options()
     else:
-        print("Not present in file")
+        print("\nAsset not present in portfolio")
+        return_to_options()
 
 
 def next_available_row(worksheet, column):
