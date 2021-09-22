@@ -19,3 +19,21 @@ def validate_choice(response, expected_response):
         print(f"Invalid data: {e}, please try again.\n")
         return False
     return True
+
+
+def confirm_numbers(responses):
+    """
+    Confirms user provided 2 numbers.
+    """
+    if len(responses) == 2:
+        try:
+            for response in responses:
+                response = float(response)
+        except ValueError:
+            print("Invalid data: your input must be numerical values.\n")
+            return False
+        else:
+            return True
+    else:
+        print("Invalid data: you pust provide 2 numbers\n")
+        return False

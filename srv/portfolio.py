@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
 from srv.inputs import basic_input_request
+from srv.validate import confirm_numbers
 
 
 SCOPE = [
@@ -123,20 +124,24 @@ def create_position(type, ticker):
             print("No Delete")
     else:
         print(f"Adding {ticker} to your portfolio")
-        data = input(
-            f"\nPlease enter the amount of {ticker} you wish to add "
-            "followed by the price you purchased it at\n"
-            "eg. '5 500'\n")
-        amount = data.split()[0]
-        price = data.split()[1]
-        print("Updating portfolio...")
-        row = 1
-        column = next_available_column(amount_sheet, row)
-        amount_sheet.update_cell(row, column, ticker)
-        amount_sheet.update_cell(row + 1, column, amount)
-        price_sheet.update_cell(row, column, ticker)
-        price_sheet.update_cell(row + 1, column, price)
-        print(f"Added {amount} {ticker} at {price} to your portfolio\n")
+        while True:
+            data = input(
+                f"\nPlease enter the amount of {ticker} you wish to add "
+                "followed by the price you purchased it at\n"
+                "eg. '5 500'\n")
+            if confirm_numbers(data.split()):
+                amount = data.split()[0]
+                price = data.split()[1]
+                print("Updating portfolio...")
+                row = 1
+                column = next_available_column(amount_sheet, row)
+                amount_sheet.update_cell(row, column, ticker)
+                amount_sheet.update_cell(row + 1, column, amount)
+                price_sheet.update_cell(row, column, ticker)
+                price_sheet.update_cell(row + 1, column, price)
+                print(
+                    f"Added {amount} {ticker} at {price} to your portfolio\n")
+                break
 
 
 def edit_positions(type, ticker):
