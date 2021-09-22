@@ -1,7 +1,6 @@
 from srv import pricedata, portfolio, inputs, format
 import finnhub
 from decouple import config
-import textwrap
 
 FINNHUB_CLIENT_KEY = config("FINNHUB_KEY")
 FINNHUB_CLIENT = finnhub.Client(api_key=FINNHUB_CLIENT_KEY)
@@ -13,13 +12,12 @@ def start_program():
     function based on the response given.
     """
     expected_responses = ["L", "P"]
-    message = textwrap.fill("If you would like to check Live Stock or "
-                            f"Crypto prices press {expected_responses[0]}. "
-                            "If you would like to View or Edit your personal "
-                            f"positions press {expected_responses[1]}.\n"
-                            "Enter your response "
-                            f"({expected_responses[0]}/"
-                            f"{expected_responses[1]}):\n", 75)
+    message = "If you would like to check Live Stock or "\
+        f"Crypto prices press {expected_responses[0]}. "\
+        "If you would like to View or Edit your personal positions "\
+        f"press {expected_responses[1]}.\n"\
+        "Enter your response "\
+        f"({expected_responses[0]}/{expected_responses[1]}):\n"
 
     response = inputs.basic_input_request(message, expected_responses)
 
