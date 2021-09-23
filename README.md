@@ -27,6 +27,7 @@ This idea comes from a personal desire for an app such as this as I currently pl
 - [Testing](#testing)
     - [PEP8](#validator)
     - [User Stories](#user-story-testing)
+    - [Live Testing](#live-testing)
     - [Bugs](#bugs)
 - [Deployment](#deployment)
     - [Local Deployment](#local-deployment)
@@ -206,6 +207,18 @@ All Python files follow all PEP8 standards and requirements with no errors ocurr
 
 - ### As a user, I need to be able to return to the beginning quickly without reloading the page. ###
     - After completing any options branch the user is always brought back to a point in which they have an option to return to the home options with a single or at most 2 inputs. This allows for quick and simle navigation of the app. Many options automatically return user to the previous options branch after completing their task and pproviding the desired information and feedback. This satisfies this user's requirements.
+
+<a name="live-testing"></a>
+
+### Live Testing ###
+Once the tool was at a partially functional state it was forwarded to several friends and colleagues for live testing and as new features were added they were prompted to try the tool again and provide feedback. The main points of feedback received were:
+- Some input responses could be more intuitive 
+    - This related to the letter keys required for navigation as some were not as clear as they could be and though they were explained on screen, an intuitive naming convention would improve the user experience so some of these were changed eg type H to return to home or L for live prices
+
+- Some information and instructions were hard to parse
+    - With so much information and instructions being provided at times the terminal could get quite crowded leading to a block of text that became hard to read. The solutions for this were: 
+        - To add additional newlines between many print statements and blocks of instructions to space out and provide separation for individual ideas.
+        - To create a function which cleared the screen when certain options and actions were taken to remove old information. This kept the information in the terminal up to date and cut down on clutter.
 
 <a name="bugs"></a>
 
