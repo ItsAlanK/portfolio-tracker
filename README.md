@@ -299,6 +299,8 @@ Technologies used in this project:
 ## Credits ##
 A big thanks to my Code Institute mentor [Simen Daehlin](https://dehlin.dev/#home) for his help preparing me for this project. And providing invaluable feedback and suggestions on how to improve it.
 
+Thank you to my girlfriend Aoife for being my proofreader for the README which I desperately needed.
+
 Thanks you friends and family who helped to troubleshoot and provided feedback for the project. (And suffer through my rambling as I try to solve problems)
 
 - Flowchart made using [Lucidchart](https://www.lucidchart.com)
