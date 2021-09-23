@@ -125,6 +125,8 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 
 - Expand functionality to currencies and commodities
 
+- Calculate individual P/L for each asset
+
 <a name="data"></a>
 
 ## Data ##
@@ -184,6 +186,27 @@ All Python files follow all PEP8 standards and requirements with no errors ocurr
 
 ### User Stories ###
 
+- ### As a user, I would like to be able to load the tool and gain live stock/crypto data quickly. ###
+    - This was one of the first considerations made when planning out the flowchart for this project. As such the first option provided to the user is to search live prices or check theri portfolio. So if the user only needs to jump on to quickly check live prices of a ticker they can do that without diving into the other options branch with a single step. Therefore the tool meets this user's needs and expectations.
+
+- ### As a user, I would like to be able to input my recent asset purchases and have them all saved to one location. ###
+    - The tool displays to the user which assets are currently in their portfolio before providing options to make changes. The user can then choose to add to those positions and can do so with a single data input of amount and price. This values are then saved to a spreadsheet organised into worksheets for buy/sell prices and amounts and separated between stock and crypto. This allows the user to have a record of their purchases and sales in one place and those records are accessible to the user through google drive should they require a more in depth review of their assets. Thus th tool satisfies this user's requirements.
+
+- ### As a user, I want to calculate my gains/losses based on my current positions. ###
+    - In the tool's main portfolio options tree the user has the ability to calculate the P/L for their portfolio. These options are easily accessible after selecting view portfolio from the home options of the app. A potential future feature listed is the ability to calculate individual P/L for each asset based on their current value and positions. The tool currently partially meets this user's requirements as it is capable of calculating overall gains/losses however the functionality could be expanded for more specific use cases in the future.
+
+- ### As a user, I need to be able to add/remove/edit my postitions. ###
+    - The user is given full control to add/remove/edit positions in their portfolio without ever having to interact with the Google sheet after its creation if they desire. Their options are split between creating and removing an entire position in one option branch and editing current positions through another branch. This allows the users to make changes on the fly as the buy or sell assets which the tool will immediately take into accound when making future calculations. The user also has the ability to correct errors by removing positions incorrectly added. So, this user's requirements are met in full by the tool.
+
+- ### As a user, I would like to be able to check my overall realised profit/loss. ###
+    - As mentioned above the portfolio options tree has the option to calculate the portfolio's profit/loss which takes into consideration their realised gains made by selling assets. This options give the user the total worth of the assets in their account currently and the total spent on the account as well as extra insights. An addition to meet this user's request more specifically would be to display the user's realised gains as a seperate value entirely as this corresponds to the amount of money the user has already gotten back from the portfolio. This small addition would allow the tool to meet the user's requirement more fully, currently they are partially met.
+
+- ### As a user, I need the tool to be simple to use with a clear navigation system. ###
+    - The tool is designed to make clear and concise requests of the user at all points. All input requests made of the user are given with clear instruction and examples of the format required in their response. All inputs are then validated and confirmed to be in the correct format. All errors thrown from incorrect information are written to give the user feedback as to their error and provide examples of expected responses. In several cases 2 inputs are requested at once as a measure to cut down on the amount of individual requests asked of the user in order to speed up use of the tool. The navigation options are clear and no branch results in a dead end. This user requirement is met in full.
+
+- ### As a user, I need to be able to return to the beginning quickly without reloading the page. ###
+    - After completing any options branch the user is always brought back to a point in which they have an option to return to the home options with a single or at most 2 inputs. This allows for quick and simle navigation of the app. Many options automatically return user to the previous options branch after completing their task and pproviding the desired information and feedback. This satisfies this user's requirements.
+
 <a name="bugs"></a>
 
 ### Bugs ###
@@ -206,7 +229,7 @@ This project is deployed to [Heroku](https://www.heroku.com) which is where it i
 ## Technologies ##
 Technologies used in this project:
 - [Python](https://www.python.org/) is the main technology used in creating all the functionality of this tool using some libraries to expand it's capabilities.
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) is used simply to house the terminal and was created in the [template](https://github.com/Code-Institute-Org/python-essentials-template) used for the repo.
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) and [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) are used simply to house and launch the terminal and these files were created in the [template](https://github.com/Code-Institute-Org/python-essentials-template) used for the repo.
 - [GSpread](https://docs.gspread.org/en/v4.0.1/) is used in order to receive and manipulate data found in the Google Sheets spreadsheets.
 - [Google OAuth](https://developers.google.com/identity/protocols/oauth2) is required in order to use the Google API's to access the spreadsheets.
 - [Finnhub.io](https://finnhub.io/) is the API used to access live price data for stocks and crypto.
