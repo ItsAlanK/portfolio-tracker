@@ -261,10 +261,26 @@ These are the steps needed in order to deploy this project locally through an ID
 5) Back in your newly cloned project in your IDE us `pip3 install -r requirements.txt` in the terminal to install all required libraries.
 6) Next you must add your creds.json file which you downloaded into the main project folder and create a file named .env in which you must paste `FINNHUB_KEY = "key"` replacing the word key with your finnhub api key.
 7) In your creds.json file copy the "client_email" address and in google sheets share your copy of the project spreadsheet to the email address. This allows the google API to access the file. (Note you must share it as and editor not a viewer)
+8) By using `python3 run.py` in the terminal the project can now be run in your IDE
 
 <a name="heroku"></a>
 
 ### Heroku Deployment ###
+
+To deploy this project to Heroku to be used remotely:
+1) Create an account with [Heroku](https://www.herokuapp.com)
+2) Create a new project and give it a name.
+3)Navigate to the settings page for your project and go to the config vars section
+3) Here your must create 3 config vars
+    - Key = `PORT` Value = `8000`
+    - Key = `CREDS` Value = Copy and paste the contents of creds.json
+    - Key = `PORT` Value = Copy and paste finnhub api key (key only
+4) Below config vars in the add buildpacks section you must add the "Python" and "Node.js" buildpacks in that order
+5) In your IDE confirm requirements.txt is up to date you using `pip freeze > requirements.txt` in the teminal.
+6) Push all changes to your github repository
+7) Back in Heroku navigate to the deploy page and link your GitHub account.
+8) Select the branch of your project to deploy click deploy branch
+Your project will deploy in a few moments and you will have a button to open your app.
 
 <a name="technologies"></a>
 
