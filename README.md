@@ -3,9 +3,9 @@
 # Portfolio Tracker #
 The porfolio tracker is a tool created as a way for investors of stock and crypto to easily monitor their investments and plot changes to a spreadsheet.
 
-In order to do this on a regular basis manually this requires searching prices and calculating the changes manually or logging in and bouncing between several investment apps in order to track individual assets as not all are supported in one location.
+In order to do this on a regular basis manually this requires searching prices and calculating the changes manually or logging in and bouncing between several investment apps in order to track individual assets, as not all are supported in one location.
 
-This idea comes from a personal desire for an app such as this as I currently plot my own profits/losses through a spreadsheet which I have had to create and maintain manually. This project will aid in automating some of the processes that I carry out daily.
+This idea comes from a personal desire for an app such, as this as I currently plot my own profits/losses through a spreadsheet which I have had to create and maintain manually. This project will aid in automating some of the processes that I carry out daily.
 
 ![Example Image](docs/images/main-screen.png)
 
@@ -43,7 +43,7 @@ This idea comes from a personal desire for an app such as this as I currently pl
 
 ### User Goals ###
 - I want a straighforward, intuitive system for displaying and inputting information.
-- I want the website to fuction on pc, tablet and mobile devices.
+- I want the website to fuction on PC, tablet and mobile devices.
 - I want the information I input to be saved to a spreadsheet so I can review past postitions and profits.
 - I need to be able to navigate between options quickly.
 
@@ -51,7 +51,7 @@ This idea comes from a personal desire for an app such as this as I currently pl
 
 ### User Stories ###
 - As a user, I would like to be able to load the tool and gain live stock/crypto data quickly.
-- As a user, I would like to be able to input my recent asset purchases and have them all saved to one location.
+- As a user, I would like to be able to input my recent asset purchases with them all saved to one location.
 - As a user, I want to calculate my gains/losses based on my current positions.
 - As a user, I need to be able to add/remove/edit my postitions.
 - As a user, I would like to be able to check my overall realised profit/loss.
@@ -73,18 +73,18 @@ This idea comes from a personal desire for an app such as this as I currently pl
 <a name="flowcharts"></a>
 
 ### Flowcharts ###
-This flowchart tracks to basic steps and checks the program must make to run based on each of the user's potential requirements and inputs. 
+This flowchart tracks the basic steps and checks the program must make to run based on each of the user's potential requirements and inputs. 
 
 ![Logic Flowchart](docs/images/portfolio-tracker-flowchart.png)
 
 Flowchart made using [Lucidchart](https://www.lucidchart.com)
 
-Flowchart was adapted slightly as endpoints for portfolio editing options now return to the portfolio options chain rather than the start of the program to eliminate some repitition if the user wishes to make multiple changes one after the other.
+Flowchart was adapted slightly as endpoints for portfolio editing options now return to the portfolio options chain rather than the start of the program. This eliminates some repitition if the user wishes to make multiple changes one after the other.
 
 <a name="wireframes"></a>
 
 ### Wireframes ###
-Wireframes for the project can be found below. As this project is command line based designs will remain largely the same throughout with accomodations made for varying screensizes.
+Wireframes for the project can be found below. As this project is command line based, designs will remain largely the same throughout with accomodations made for varying screensizes.
 
 ![Desktop Wireframe](docs/wireframes/desktop-wireframe.png)
 
@@ -104,11 +104,11 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 
 ### Existing Features ###
 - Live stock/crypto price checker:
-    - User can search all major stocks and cryptocurrency prices live without having to have them in their own portfolio.
+    - User can search all major stocks and cryptocurrency prices live without needing to have them in their own portfolio.
 - Simple Command-Line Interface:
     - The tool is controlled using a simple terminal with basic input prompts all clearly explained to the user for easy navigation.
 - Input validation:
-    - All user inputs are validated to ensure the correct inputs are provided to prevent errors. This includes the correct format, amount of inputs and that any tickers searched are valid. Any incorrect inputs give feedback to the user explaining why it was wrong with examples of the correct input format.
+    - All user inputs are validated to ensure the correct inputs are provided to prevent errors. This includes the correct format, amount of inputs and that all tickers searched are valid. Any incorrect inputs give feedback to the user explaining why it was wrong with examples of the correct input format.
 - Saves and displays user's position sizes and buy-in prices:
     - Using Gspread and Google Sheets the user can input and edit their own positions which are saved for future use.
 - Calculates current value of user's positions:
