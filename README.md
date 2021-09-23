@@ -115,10 +115,10 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
     - Using the user's portfolio values saved in spreadsheets along with live price data, the tool can calculate the value of each of the user's assets and total portfolio value.
 - Calculates profit/loss of user's portfolio
     - Toll uses all previously mentioned data to calculate the overall profit or loss of the portfolio.
-- Save realized gains and losses and add as positions are closed:
-    - Buy inputting negative values and sell prices for position changes the user can log realised changes which are taken into consideration when calculating P/L.
+- Save realised gains and losses and add as positions are closed:
+    - By inputting negative values and sell prices for position changes the user can log realised changes which are taken into consideration when calculating P/L.
 - Restart Program button:
-    - Should any unexpected errors occur the tool has a restart program button to reboot the tool.
+    - Should any unexpected errors occur, the tool has a restart program button to reboot the tool.
 
 <a name="future-features"></a>
 
@@ -135,12 +135,12 @@ Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws
 <a name="structure"></a>
 
 ### Structure ###
-User's portfolio data is stores in a Google Sheets document. This document contains 4 worksheets, 2 relating to stock data and 2 for cryptocurrency data. Each pairing has a worksheet called ###-pos-positions and ###-amounts.
+User's portfolio data is stored in a Google Sheets document. This document contains 4 worksheets, 2 relating to stock data and 2 for cryptocurrency data. Each pairing has a worksheet called ###-pos-positions and ###-amounts.
 
 - The pos-positions worksheet stores tickers along with the prices at which the corresponding ticker was purchased at. Each row corresponds to an amount in the same cell position in the amounts worksheet.
 ![Positions Spreadsheet](docs/images/pos-positions-screenshot.png)
 
-- The amounts worksheet contains the amount of units of the stock or crypto which was bought at the corresponding price in the pos-positions sheet. Negative values in this sheet imply that an amount of the asset was sold at the price in its corresponding pos-positions cell.
+- The amounts worksheet contains the amount of units of the stock or crypto which was bought at the corresponding price in the pos-positions sheet. Negative values in this sheet imply that a certain amount of the asset was sold at the price in its corresponding pos-positions cell.
 ![Amounts Spreadsheet](docs/images/amounts-screenshot.png)
 
 Using these two sheets one can calculate the amount of money spent on each asset.
@@ -151,7 +151,7 @@ Using these two sheets one can calculate the amount of money spent on each asset
 - When calculating live portfolio values above the tool:
     - Gets the sum total amount of each asset in the portfolio individually.
     - Gets the live price for each of the tickers in the portfolio.
-    - Muliplies the live price by the amount held to get a live value.
+    - Multiplies the live price by the amount held to get a live value.
     ```
     (total amount of asset held) * (live price of asset) = Value of asset held
     ```
@@ -297,6 +297,20 @@ Technologies used in this project:
 <a name="credits"></a>
 
 ## Credits ##
+A big thanks to my Code Institute mentor [Simen Daehlin](https://dehlin.dev/#home) for his help preparing me for this project. And providing invaluable feedback and suggestions on how to improve it.
 
+Thanks you friends and family who helped to troubleshoot and provided feedback for the project. (And suffer through my rambling as I try to solve problems)
+
+- Flowchart made using [Lucidchart](https://www.lucidchart.com)
+
+- Wireframes made with [Balsamiq](https://balsamiq.com/wireframes/?gclid=Cj0KCQjws4aKBhDPARIsAIWH0JWJhO7hJAo7ksg21AUhhLgGy-mFt-Dwmx0BWkjgxQDdHdxY1u9snBkaAnwrEALw_wcB)
+
+- Font used for title is [Laot](https://fonts.google.com/specimen/Lato?query=lato)
+
+- [Numpy](https://numpy.org/) used to simplify process of calculating using multidimensional arrays
+
+- [Finnhub.io](https://finnhub.io/) used to get all live price data and ticker symbols
+
+- [GSpread](https://docs.gspread.org/en/v4.0.1/) used to receive and edit spreadsheet data
 
 [Back to top](#top)
