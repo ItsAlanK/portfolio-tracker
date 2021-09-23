@@ -239,6 +239,28 @@ This project is deployed to [Heroku](https://www.heroku.com) which is where it i
 <a name="local-deployment"></a>
 
 ### Local Deployment ###
+These are the steps needed in order to deploy this project locally through an IDE such as gitpod:
+
+1) Clone the project. Navigate to the repository, above the window housing all of the application's files there is a code button which drops down into a clone window providing a link to clone the project. In your IDE terminal type the following using the link provided.
+    ```
+    git clone https://github.com/ItsAlanK/portfolio-tracker.git
+    ```
+2) Create a copy of [this Google Sheets](https://docs.google.com/spreadsheets/d/1jkYgwJytYImzk_7XiS8XRRuSqQnq5Ib9-Qs70vegv-Y/edit?usp=sharing) document in your own drive. (all data is dummy data and can be removed to add real data using app)
+3) Create a [Google Cloud Platform](https://console.cloud.google.com/) account in order to use Google API's to access the Google sheets file.
+    - Once your account is created, from your dashboard create a new project and name it whatever you wish your project to be called.
+    - In the side menu select API's & services and go to the library to search for "Google Drive API"
+    - Enable this API and click create credentials on the following page. The options required for this project are:
+        - Google Drive API
+        - Application Data
+        - No compute Engine
+        - Choose account name
+        - Skip all other options except the Role Dropdown box choose Basic > Editor then press Continue
+    - Next click the service account that was created and select keys and create a JSON file which you can save to your desktop and name creds.json (the name is important)
+    - Then return to the API's library and search for "Google Sheets API" which only needs to be enabled.
+4)  On [Finnhub.io](https://finnhub.io/) select get free API key, create an account and save the key provided.
+5) Back in your newly cloned project in your IDE us `pip3 install -r requirements.txt` in the terminal to install all required libraries.
+6) Next you must add your creds.json file which you downloaded into the main project folder and create a file named .env in which you must paste `FINNHUB_KEY = "key"` replacing the word key with your finnhub api key.
+7) In your creds.json file copy the "client_email" address and in google sheets share your copy of the project spreadsheet to the email address. This allows the google API to access the file. (Note you must share it as and editor not a viewer)
 
 <a name="heroku"></a>
 
