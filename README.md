@@ -158,7 +158,7 @@ Using these two sheets one can calculate the amount of money spent on each asset
 
 ![Profit Calculated](docs/images/profit-calculated-screenshot.png)
 - When calculating total amount spent on portfolio the tool:
-    - Multiplies each individual amounts values for each ticker by its corresponding pos-position value to get the amount spend at that particular transaction. (not using any negative amounts as these indicate sales)
+    - Multiplies each individual amount's values for each ticker by its corresponding pos-position value to get the amount spend at that particular transaction. (not using any negative amounts as these indicate sales)
     - Add together each result for each ticker to get total spent per asset.
     - Add these values together for total spent on the portfolio.
 
