@@ -223,6 +223,13 @@ Once the tool was at a partially functional state it was forwarded to several fr
 <a name="bugs"></a>
 
 ### Bugs ###
+Some notable bugs and their fixes found during development were:
+- Live search function gave errors if the incorrect number of values were given
+    - The solution to this was an extra step in the validation process which would later be used in all input requests that require more than one value. By using `response.split()` the user's response was made into a list which was then compared to the required amount of values requested in order to confirm the user has provided the right amount of values. This check is carried out before any other validation checks confirming the response content and format.
+- Crypto searches causing errors due to formatting issue:
+    - When searching for cryptocurrencies finnhub requires more than just the ticker name which stock searches take: `client.crypto_candles(asset, interval, time_start, time_end)` This required importing the time module and using it to pass finnhub the UNIX timecode for the present and the previous minute in order to get the last minutes price action. On top of this the ticker must be in the format of `BINANCE:tickerUDST` which required creating a function which wrapped the user's inputted ticker in the extra string data and removed it again for display purposes.
+- Tickers and prices when being displayed to the user where all given within brackets:
+    - This was due to results being formed in arrays which had to then be unpacked before outputting to the terminal using `list.pop()`
 
 <a name="deployment"></a>
 
