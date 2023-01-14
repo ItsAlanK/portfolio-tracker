@@ -7,6 +7,8 @@ In order to do this on a regular basis manually this requires searching prices a
 
 This idea comes from a personal desire for an app such, as this as I currently plot my own profits/losses through a spreadsheet which I have had to create and maintain manually. This project will aid in automating some of the processes that I carry out daily.
 
+[**Live Site Currently Down due to Heroku removing Free Plan**]
+
 ![Example Image](docs/images/main-screen.png)
 
 ## Table of contents 
